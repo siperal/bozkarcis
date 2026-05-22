@@ -1,6 +1,6 @@
 {{ file_managed_by_ansible }}
 
-[lockdown_details]
+[siperal_details]
 # Benchmark release
 Benchmark_release = {{ benchmark }}
 Benchmark_version = {{ benchmark_version }}
@@ -17,15 +17,9 @@ Level_1_Server_tag_run = true
 {% if 'level2-server' in ansible_run_tags %}
 Level_2_Server_tag_run = true
 {% endif %}
-{% if 'level1-workstation' in ansible_run_tags %}
-Level_1_workstation_tag_run = true
-{% endif %}
-{% if 'level2-workstation' in ansible_run_tags %}
-Level_2_workstation_tag_run = true
-{% endif %}
 {% endif %}
 
-[lockdown_audit_details]
+[siperal_audit_details]
 {% if run_audit %}
 # Audit run
 audit_run_date = {{ '%Y-%m-%d - %H:%M:%S' | ansible.builtin.strftime }}

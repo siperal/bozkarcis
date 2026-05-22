@@ -5,7 +5,6 @@
     - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rsyslog
     - rule_6.2.3.1
@@ -20,7 +19,6 @@
     - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rsyslog
     - rule_6.2.3.2
@@ -38,7 +36,6 @@
     - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_6.2.3.3
     - NIST800-53R5_AC-3
@@ -70,7 +67,6 @@
     - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rsyslog
     - rule_6.2.3.4
@@ -89,7 +85,6 @@
     - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rsyslog
     - rule_6.2.3.5
@@ -194,7 +189,6 @@
     - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rsyslog
     - rule_6.2.3.6
@@ -219,7 +213,6 @@
     - not bozkarcis_system_is_log_server
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rsyslog
     - rule_6.2.3.7
@@ -244,7 +237,6 @@
     - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
-    - level1-workstation
     - manual
     - patch
     - logrotate

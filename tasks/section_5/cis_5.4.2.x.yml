@@ -6,7 +6,6 @@
     - bozkarcis_disruption_high
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - accounts
     - users
@@ -23,7 +22,6 @@
     - bozkarcis_disruption_high
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_5.4.2.2
     - user
@@ -56,7 +54,6 @@
   when: bozkarcis_rule_5_4_2_3
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_5.4.2.3
     - user
@@ -97,7 +94,6 @@
   when: bozkarcis_rule_5_4_2_4
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - shadow_suite
     - rule_5.4.2.4
@@ -108,7 +104,6 @@
   when: bozkarcis_rule_5_4_2_5
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - paths
     - rule_5.4.2.5
@@ -202,7 +197,6 @@
   when: bozkarcis_rule_5_4_2_6
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - shadow_suite
     - rule_5.4.2.6
@@ -224,7 +218,6 @@
     - bozkarcis_disruption_high
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - shadow_suite
     - rule_5.4.2.7
@@ -247,7 +240,6 @@
     - "'root' not in item.id"
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - shadow_suite
     - rule_5.4.2.8

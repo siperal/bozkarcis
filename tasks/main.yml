@@ -43,15 +43,6 @@
     fail_msg: "Crypto policy is not a permitted version"
     success_msg: "Crypto policy is a permitted version"
 
-- name: "Check bozkarcis_bootloader_password variable has been changed"
-  when:
-    - bozkarcis_set_boot_pass
-    - bozkarcis_rule_1_4_1
-  tags: always
-  ansible.builtin.assert:
-    that: bozkarcis_bootloader_password_hash != 'grub.pbkdf2.sha512.changethispassword' or (bozkarcis_bootloader_salt != '' and bozkarcis_bootloader_password != 'password') # pragma: allowlist secret
-    msg: "This role will not be able to run single user password commands as bozkarcis_bootloader_password or bozkarcis_bootloader_password_hash variable has not been set correctly"
-
 - name: "Check crypto-policy module input"
   when:
     - bozkarcis_rule_1_6_1
@@ -130,7 +121,6 @@
   when: bozkarcis_rule_5_4_2_4
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - accounts
     - root

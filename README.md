@@ -14,6 +14,12 @@ This role **will make changes to the system** which may have unintended conseque
 - Check Mode is not guaranteed!
 - This role was developed against a clean install of the Operating System. If you are implementing to an existing system please review this role for any site specific changes that are needed.
 
+## Rules
+
+### Skip
+
+- 1.8.x: There is no desktop environment for Siperal Bozkaros
+
 ## Target System
 
 ### Technical Dependencies

@@ -7,7 +7,6 @@
     - bozkarcis_rule_3_1_1
   tags:
     - level1-server
-    - level1-workstation
     - manual
     - patch
     - ipv6
@@ -83,7 +82,6 @@
   when: bozkarcis_rule_3_1_3
   tags:
     - level1-server
-    - level2-workstation
     - patch
     - bluetooth
     - rule_3.1.3

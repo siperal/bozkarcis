@@ -1,15 +1,14 @@
 ---
-
 - name: Pre Audit Setup | Setup the LE audit
   when: setup_audit
   tags: setup_audit
   ansible.builtin.include_tasks:
     file: LE_audit_setup.yml
 
-- name: Pre Audit Setup | Ensure existence of {{ audit_conf_dir }}  # noqa name[template]
+- name: Pre Audit Setup | Ensure existence of {{ audit_conf_dir }} # noqa name[template]
   ansible.builtin.file:
     path: "{{ audit_conf_dir }}"
-    mode: 'go-w'
+    mode: "go-w"
     state: directory
 
 - name: Pre Audit Setup | If using git for content set up
@@ -43,7 +42,7 @@
   when: audit_content == 'get_url'
   ansible.builtin.unarchive:
     src: "{{ audit_conf_source }}"
-    dest: "{{ audit_conf_dest }}/{{ benchmark }}-Audit"
+    dest: "{{ audit_conf_dest }}/{{ benchmark }}-audit"
     remote_src: "{{ (audit_conf_source is contains('http')) | ternary(true, false) }}"
     extra_opts: "{{ (audit_conf_source is contains('github')) | ternary('--strip-components=1', []) }}"
 
@@ -69,9 +68,9 @@
   ansible.builtin.template:
     src: ansible_vars_goss.yml.j2
     dest: "{{ audit_vars_path }}"
-    mode: 'go-rwx'
+    mode: "go-rwx"
 
-- name: Pre Audit | Run pre_remediation audit {{ benchmark }}  # noqa name[template]
+- name: Pre Audit | Run pre_remediation audit {{ benchmark }} # noqa name[template]
   ansible.builtin.shell: |
     set -o pipefail
     umask 0022

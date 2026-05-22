@@ -6,7 +6,6 @@
     - bozkarcis_rule_3_3_2_1
   tags:
     - level2-server
-    - level1-workstation
     - sysctl
     - patch
     - rule_3.3.2.1
@@ -29,7 +28,6 @@
     - bozkarcis_rule_3_3_2_2
   tags:
     - level1-server
-    - level1-workstation
     - sysctl
     - patch
     - rule_3.3.2.2
@@ -52,7 +50,6 @@
     - bozkarcis_rule_3_3_2_3
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_3.3.2.3
@@ -75,7 +72,6 @@
     - bozkarcis_rule_3_3_2_4
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_3.3.2.4
@@ -97,7 +93,6 @@
     - bozkarcis_rule_3_3_2_5
   tags:
     - level1-server
-    - level1-workstation
     - sysctl
     - patch
     - rule_3.3.2.5
@@ -119,7 +114,6 @@
     - bozkarcis_rule_3_3_2_6
   tags:
     - level1-server
-    - level1-workstation
     - sysctl
     - patch
     - rule_3.3.2.6
@@ -141,7 +135,6 @@
     - bozkarcis_rule_3_3_2_7
   tags:
     - level1-server
-    - level1-workstation
     - sysctl
     - patch
     - rule_3.3.2.7
@@ -163,7 +156,6 @@
     - bozkarcis_rule_3_3_2_8
   tags:
     - level1-server
-    - level1-workstation
     - sysctl
     - patch
     - rule_3.3.2.8

@@ -3,7 +3,6 @@
   when: bozkarcis_rule_2_1_1
   tags:
     - level1-server
-    - level2-workstation
     - automated
     - patch
     - NIST800-53R5_SI-3
@@ -33,7 +32,6 @@
   when: bozkarcis_rule_2_1_2
   tags:
     - level1-server
-    - level2-workstation
     - automated
     - patch
     - avahi
@@ -68,7 +66,6 @@
   when: bozkarcis_rule_2_1_3
   tags:
     - level2-server
-    - level2-workstation
     - automated
     - patch
     - dhcp
@@ -101,7 +98,6 @@
   when: bozkarcis_rule_2_1_4
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - dhcp
@@ -135,7 +131,6 @@
   when: bozkarcis_rule_2_1_5
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - dns
@@ -165,7 +160,6 @@
   when: bozkarcis_rule_2_1_6
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - dns
@@ -195,7 +189,6 @@
   when: bozkarcis_rule_2_1_7
   tags:
     - level1-server
-    - level1-workstation
     - automation
     - patch
     - ftp
@@ -226,7 +219,6 @@
   when: bozkarcis_rule_2_1_8
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - dovecot
@@ -264,7 +256,6 @@
   when: bozkarcis_rule_2_1_9
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - nfs
@@ -360,7 +351,6 @@
   when: bozkarcis_rule_2_1_12
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - rsync
@@ -394,7 +384,6 @@
   when: bozkarcis_rule_2_1_13
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - samba
@@ -427,7 +416,6 @@
     - bozkarcis_rule_2_1_14
   tags:
     - level1-server
-    - level1-workstation
     - automation
     - patch
     - snmp
@@ -459,7 +447,6 @@
     - bozkarcis_rule_2_1_15
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - telnet
@@ -492,7 +479,6 @@
     - bozkarcis_rule_2_1_16
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - tftp
@@ -525,7 +511,6 @@
   when: bozkarcis_rule_2_1_17
   tags:
     - level1-server
-    - level1-workstation
     - automation
     - patch
     - squid
@@ -556,7 +541,6 @@
   when: bozkarcis_rule_2_1_18
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - httpd
@@ -604,21 +588,8 @@
         state: "{{ ('nginx' in ansible_facts.packages) | ternary('stopped', omit) }}"
         masked: true
 
-- name: "2.1.19 | PATCH | Ensure GNOME Display Manager is removed"
-  when:
-    - bozkarcis_rule_2_1_19
-    - not rhel10_desktop_required
-  tags:
-    - level2-server
-    - level1-workstation
-    - automated
-    - patch
-    - xinetd
-    - NIST800-53R5_CM-7
-    - rule_2.1.19
-  ansible.builtin.package:
-    name: gdm
-    state: absent
+#- name: "2.1.19 | PATCH | Ensure GNOME Display Manager is removed"
+# There is no GNOME Display Manager in Siperal Bozkaros.
 
 - name: "2.1.20 | PATCH | Ensure X window server services are not in use"
   when:
@@ -626,7 +597,6 @@
     - bozkarcis_rule_2_1_20
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - xwindow
@@ -643,7 +613,6 @@
     - bozkarcis_rule_2_1_21
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - postfix
@@ -659,7 +628,6 @@
   when: bozkarcis_rule_2_1_22
   tags:
     - level1-server
-    - level1-workstation
     - manual
     - audit
     - services

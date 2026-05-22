@@ -1,0 +1,636 @@
+---
+## metadata for benchmark
+
+## metadata for Audit benchmark
+benchmark_version: "1.0.1"
+
+# Set if genuine RHEL (subscription manager check) not for derivatives e.g. CentOS
+# If run via script this is discovered and set
+host_os_distribution: RedHat
+
+#  timeout for each command to run where set - default = 10seconds/10000ms
+timeout_ms: 120000
+
+# Taken from LE rhel10-cis
+bozkarcis_section1: true
+bozkarcis_section2: true
+bozkarcis_section3: true
+bozkarcis_section4: true
+bozkarcis_section5: true
+bozkarcis_section6: true
+bozkarcis_section7: true
+
+bozkarcis_level_1: true
+bozkarcis_level_2: true
+
+bozkarcis_selinux_disable: false
+
+#  to enable rules that may have IO impact on a system e.g. full filesystem scans or CPU heavy
+run_heavy_tests: true
+
+#  True is BIOS based system else set to false
+bozkarcis_legacy_boot: true
+
+# Section 1 is Initial setup (FileSystem Configuration, Configure Software Updates, Filesystem Integrity Checking, Secure Boot Settings,
+# Additional Process Hardening, Mandatory Access Control, Command Line Warning Banners, and GNOME Display Manager)
+# Filesystem kernel modules
+bozkarcis_rule_1_1_1_1: true
+bozkarcis_rule_1_1_1_2: true
+bozkarcis_rule_1_1_1_3: true
+bozkarcis_rule_1_1_1_4: true
+bozkarcis_rule_1_1_1_5: true
+bozkarcis_rule_1_1_1_6: true
+bozkarcis_rule_1_1_1_7: true
+bozkarcis_rule_1_1_1_8: true
+bozkarcis_rule_1_1_1_9: true
+bozkarcis_rule_1_1_1_10: true
+bozkarcis_rule_1_1_1_11: true
+# Filesystems
+# /tmp
+bozkarcis_rule_1_1_2_1_1: true
+bozkarcis_rule_1_1_2_1_2: true
+bozkarcis_rule_1_1_2_1_3: true
+bozkarcis_rule_1_1_2_1_4: true
+# /dev/shm
+bozkarcis_rule_1_1_2_2_1: true
+bozkarcis_rule_1_1_2_2_2: true
+bozkarcis_rule_1_1_2_2_3: true
+bozkarcis_rule_1_1_2_2_4: true
+# /home
+bozkarcis_rule_1_1_2_3_1: true
+bozkarcis_rule_1_1_2_3_2: true
+bozkarcis_rule_1_1_2_3_3: true
+# /var
+bozkarcis_rule_1_1_2_4_1: true
+bozkarcis_rule_1_1_2_4_2: true
+bozkarcis_rule_1_1_2_4_3: true
+# /var/tmp
+bozkarcis_rule_1_1_2_5_1: true
+bozkarcis_rule_1_1_2_5_2: true
+bozkarcis_rule_1_1_2_5_3: true
+bozkarcis_rule_1_1_2_5_4: true
+# /var/log
+bozkarcis_rule_1_1_2_6_1: true
+bozkarcis_rule_1_1_2_6_2: true
+bozkarcis_rule_1_1_2_6_3: true
+bozkarcis_rule_1_1_2_6_4: true
+# /var/log/audit
+bozkarcis_rule_1_1_2_7_1: true
+bozkarcis_rule_1_1_2_7_2: true
+bozkarcis_rule_1_1_2_7_3: true
+bozkarcis_rule_1_1_2_7_4: true
+
+# Package Mgmt
+# Config Pkg Repos
+bozkarcis_rule_1_2_1_1: true
+bozkarcis_rule_1_2_1_2: true
+bozkarcis_rule_1_2_1_3: true
+bozkarcis_rule_1_2_1_4: true
+bozkarcis_rule_1_2_1_5: true
+# Package updates
+bozkarcis_rule_1_2_2_1: true
+
+# Selinux
+bozkarcis_rule_1_3_1_1: true
+bozkarcis_rule_1_3_1_2: true
+bozkarcis_rule_1_3_1_3: true
+bozkarcis_rule_1_3_1_4: true
+bozkarcis_rule_1_3_1_5: true
+bozkarcis_rule_1_3_1_6: true
+bozkarcis_rule_1_3_1_7: true
+bozkarcis_rule_1_3_1_8: true
+
+# Bootloader
+bozkarcis_rule_1_4_1: true
+bozkarcis_rule_1_4_2: true
+
+# Additional Process Hardening
+bozkarcis_rule_1_5_1: true
+bozkarcis_rule_1_5_2: true
+bozkarcis_rule_1_5_3: true
+bozkarcis_rule_1_5_4: true
+bozkarcis_rule_1_5_5: true
+bozkarcis_rule_1_5_6: true
+bozkarcis_rule_1_5_7: true
+bozkarcis_rule_1_5_8: true
+bozkarcis_rule_1_5_9: true
+bozkarcis_rule_1_5_10: true
+
+# Config system wide Crypto
+bozkarcis_rule_1_6_1: true
+bozkarcis_rule_1_6_2: true
+bozkarcis_rule_1_6_3: true
+bozkarcis_rule_1_6_4: true
+
+# Command line warning banners
+bozkarcis_rule_1_7_1: true
+bozkarcis_rule_1_7_2: true
+bozkarcis_rule_1_7_3: true
+bozkarcis_rule_1_7_4: true
+bozkarcis_rule_1_7_5: true
+bozkarcis_rule_1_7_6: true
+
+# Gnome Display Manager
+# There is no desktop manager for Siperal Bozkaros Server.
+
+# Section 2 rules are controling Services (Special Purpose Services, and service clients)
+## Configure Server Services
+bozkarcis_rule_2_1_1: true
+bozkarcis_rule_2_1_2: true
+bozkarcis_rule_2_1_3: true
+bozkarcis_rule_2_1_4: true
+bozkarcis_rule_2_1_5: true
+bozkarcis_rule_2_1_6: true
+bozkarcis_rule_2_1_7: true
+bozkarcis_rule_2_1_8: true
+bozkarcis_rule_2_1_9: true
+bozkarcis_rule_2_1_10: true
+bozkarcis_rule_2_1_11: true
+bozkarcis_rule_2_1_12: true
+bozkarcis_rule_2_1_13: true
+bozkarcis_rule_2_1_14: true
+bozkarcis_rule_2_1_15: true
+bozkarcis_rule_2_1_16: true
+bozkarcis_rule_2_1_17: true
+bozkarcis_rule_2_1_18: true
+bozkarcis_rule_2_1_19: true
+bozkarcis_rule_2_1_20: true
+bozkarcis_rule_2_1_21: true
+bozkarcis_rule_2_1_22: true
+
+## Configure Client Services
+bozkarcis_rule_2_2_1: true
+bozkarcis_rule_2_2_2: true
+bozkarcis_rule_2_2_3: true
+bozkarcis_rule_2_2_4: true
+
+## Configure Time Synchronization
+bozkarcis_rule_2_3_1: true
+bozkarcis_rule_2_3_2: true
+bozkarcis_rule_2_3_3: true
+
+## Job Schedulers
+### cron
+bozkarcis_rule_2_4_1_1: true
+bozkarcis_rule_2_4_1_2: true
+bozkarcis_rule_2_4_1_3: true
+bozkarcis_rule_2_4_1_4: true
+bozkarcis_rule_2_4_1_5: true
+bozkarcis_rule_2_4_1_6: true
+bozkarcis_rule_2_4_1_7: true
+bozkarcis_rule_2_4_1_8: true
+bozkarcis_rule_2_4_1_9: true
+### at
+bozkarcis_rule_2_4_2_1: true
+
+# Section 3 Network
+## Network Devices
+bozkarcis_rule_3_1_1: true
+bozkarcis_rule_3_1_2: true
+bozkarcis_rule_3_1_3: true
+## Network Kernel Modules
+bozkarcis_rule_3_2_1: true
+bozkarcis_rule_3_2_2: true
+bozkarcis_rule_3_2_3: true
+bozkarcis_rule_3_2_4: true
+bozkarcis_rule_3_2_5: true
+bozkarcis_rule_3_2_6: true
+# Configure IPv4 parameters
+bozkarcis_rule_3_3_1_1: true
+bozkarcis_rule_3_3_1_2: true
+bozkarcis_rule_3_3_1_3: true
+bozkarcis_rule_3_3_1_4: true
+bozkarcis_rule_3_3_1_5: true
+bozkarcis_rule_3_3_1_6: true
+bozkarcis_rule_3_3_1_7: true
+bozkarcis_rule_3_3_1_8: true
+bozkarcis_rule_3_3_1_9: true
+bozkarcis_rule_3_3_1_10: true
+bozkarcis_rule_3_3_1_11: true
+bozkarcis_rule_3_3_1_12: true
+bozkarcis_rule_3_3_1_13: true
+bozkarcis_rule_3_3_1_14: true
+bozkarcis_rule_3_3_1_15: true
+bozkarcis_rule_3_3_1_16: true
+bozkarcis_rule_3_3_1_17: true
+bozkarcis_rule_3_3_1_18: true
+# Configure IPv6 parameters
+bozkarcis_rule_3_3_2_1: true
+bozkarcis_rule_3_3_2_2: true
+bozkarcis_rule_3_3_2_3: true
+bozkarcis_rule_3_3_2_4: true
+bozkarcis_rule_3_3_2_5: true
+bozkarcis_rule_3_3_2_6: true
+bozkarcis_rule_3_3_2_7: true
+bozkarcis_rule_3_3_2_8: true
+
+# Section 4 Firewalls
+## Firewalld
+bozkarcis_rule_4_1_1: true
+bozkarcis_rule_4_1_2: true
+bozkarcis_rule_4_1_3: true
+bozkarcis_rule_4_1_4: true
+bozkarcis_rule_4_1_5: true
+bozkarcis_rule_4_1_6: true
+bozkarcis_rule_4_1_7: true
+
+## Section 5 Fixes
+# Section 5 rules control Access, Authentication, and Authorization (Configure time-based job schedulers,
+# Configure sudo, Configure SSH Server, Configure PAM and User Accounts and Environment)
+# Configure SSH Server
+bozkarcis_rule_5_1_1: true
+bozkarcis_rule_5_1_2: true
+bozkarcis_rule_5_1_3: true
+bozkarcis_rule_5_1_4: true
+bozkarcis_rule_5_1_5: true
+bozkarcis_rule_5_1_6: true
+bozkarcis_rule_5_1_7: true
+bozkarcis_rule_5_1_8: true
+bozkarcis_rule_5_1_9: true
+bozkarcis_rule_5_1_10: true
+bozkarcis_rule_5_1_11: true
+bozkarcis_rule_5_1_12: true
+bozkarcis_rule_5_1_13: true
+bozkarcis_rule_5_1_14: true
+bozkarcis_rule_5_1_15: true
+bozkarcis_rule_5_1_16: true
+bozkarcis_rule_5_1_17: true
+bozkarcis_rule_5_1_18: true
+bozkarcis_rule_5_1_19: true
+bozkarcis_rule_5_1_20: true
+bozkarcis_rule_5_1_21: true
+bozkarcis_rule_5_1_22: true
+# 5.2 Configure Privilege Escalation
+bozkarcis_rule_5_2_1: true
+bozkarcis_rule_5_2_2: true
+bozkarcis_rule_5_2_3: true
+bozkarcis_rule_5_2_4: true
+bozkarcis_rule_5_2_5: true
+bozkarcis_rule_5_2_6: true
+bozkarcis_rule_5_2_7: true
+# 5.3.1.x Configure PAM software packages
+bozkarcis_rule_5_3_1_1: true
+bozkarcis_rule_5_3_1_2: true
+bozkarcis_rule_5_3_1_3: true
+bozkarcis_rule_5_3_1_4: true
+bozkarcis_rule_5_3_1_5: true
+# 5.3.2.1 Configure pam_faillock module
+bozkarcis_rule_5_3_2_1_1: true
+bozkarcis_rule_5_3_2_1_2: true
+bozkarcis_rule_5_3_2_1_3: true
+# 5.3.2.2 Configure pam_pwquality module
+bozkarcis_rule_5_3_2_2_1: true
+bozkarcis_rule_5_3_2_2_2: true
+bozkarcis_rule_5_3_2_2_3: true
+bozkarcis_rule_5_3_2_2_4: true
+bozkarcis_rule_5_3_2_2_5: true
+bozkarcis_rule_5_3_2_2_6: true
+bozkarcis_rule_5_3_2_2_7: true
+# 5.3.2.3 Configure pam_pwhistory module
+# These are added as part of 5.3.2.4 using jinja2 template
+bozkarcis_rule_5_3_2_3_1: true
+bozkarcis_rule_5_3_2_3_2: true
+bozkarcis_rule_5_3_2_3_3: true
+# 5.3.2.4 Configure pam_unix module
+bozkarcis_rule_5_3_2_4_1: true
+bozkarcis_rule_5_3_2_4_2: true
+bozkarcis_rule_5_3_2_4_3: true
+bozkarcis_rule_5_3_2_4_4: true
+# 5.4 User Accounts and Environment
+# 5.4.1 Configure shadow password suite parameters
+bozkarcis_rule_5_4_1_1: true
+bozkarcis_rule_5_4_1_2: true
+bozkarcis_rule_5_4_1_3: true
+bozkarcis_rule_5_4_1_4: true
+bozkarcis_rule_5_4_1_5: true
+bozkarcis_rule_5_4_1_6: true
+# 5.4.2 Configure root and system accounts and environment
+bozkarcis_rule_5_4_2_1: true
+bozkarcis_rule_5_4_2_2: true
+bozkarcis_rule_5_4_2_3: true
+bozkarcis_rule_5_4_2_4: true
+bozkarcis_rule_5_4_2_5: true
+bozkarcis_rule_5_4_2_6: true
+bozkarcis_rule_5_4_2_7: true
+bozkarcis_rule_5_4_2_8: true
+# 5.4.3 Configure user default environment
+bozkarcis_rule_5_4_3_1: true
+bozkarcis_rule_5_4_3_2: true
+bozkarcis_rule_5_4_3_3: true
+
+## Section 6 Fixes
+# Section 6 rules control Logging and Auditing
+# Configure Integrity Checking
+bozkarcis_rule_6_1_1: true
+bozkarcis_rule_6_1_2: true
+bozkarcis_rule_6_1_3: true
+# 6.2.1 Configure systemd-journald service
+bozkarcis_rule_6_2_1_1: true
+bozkarcis_rule_6_2_1_2: true
+bozkarcis_rule_6_2_1_3: true
+bozkarcis_rule_6_2_1_4: true
+# 6.2.2.x Configure journald
+bozkarcis_rule_6_2_2_1_1: true
+bozkarcis_rule_6_2_2_1_2: true
+bozkarcis_rule_6_2_2_1_3: true
+bozkarcis_rule_6_2_2_1_4: true
+bozkarcis_rule_6_2_2_2: true
+bozkarcis_rule_6_2_2_3: true
+bozkarcis_rule_6_2_2_4: true
+# 6.2.3 Configure rsyslog
+bozkarcis_rule_6_2_3_1: true
+bozkarcis_rule_6_2_3_2: true
+bozkarcis_rule_6_2_3_3: true
+bozkarcis_rule_6_2_3_4: true
+bozkarcis_rule_6_2_3_5: true
+bozkarcis_rule_6_2_3_6: true
+bozkarcis_rule_6_2_3_7: true
+bozkarcis_rule_6_2_3_8: true
+# 6.2.4 Configure Logfiles
+bozkarcis_rule_6_2_4_1: true
+# 6.3 Configure Auditing
+# 6.3.1 Configure auditd Service
+bozkarcis_rule_6_3_1_1: true
+bozkarcis_rule_6_3_1_2: true
+bozkarcis_rule_6_3_1_3: true
+bozkarcis_rule_6_3_1_4: true
+# 6.3.2 Configure Data Retention
+bozkarcis_rule_6_3_2_1: true
+bozkarcis_rule_6_3_2_2: true
+bozkarcis_rule_6_3_2_3: true
+bozkarcis_rule_6_3_2_4: true
+# 6.3.3 Configure auditd Rules
+bozkarcis_rule_6_3_3_1: true
+bozkarcis_rule_6_3_3_2: true
+bozkarcis_rule_6_3_3_3: true
+bozkarcis_rule_6_3_3_4: true
+bozkarcis_rule_6_3_3_5: true
+bozkarcis_rule_6_3_3_6: true
+bozkarcis_rule_6_3_3_7: true
+bozkarcis_rule_6_3_3_8: true
+bozkarcis_rule_6_3_3_9: true
+bozkarcis_rule_6_3_3_10: true
+bozkarcis_rule_6_3_3_11: true
+bozkarcis_rule_6_3_3_12: true
+bozkarcis_rule_6_3_3_13: true
+bozkarcis_rule_6_3_3_14: true
+bozkarcis_rule_6_3_3_15: true
+bozkarcis_rule_6_3_3_16: true
+bozkarcis_rule_6_3_3_17: true
+bozkarcis_rule_6_3_3_18: true
+bozkarcis_rule_6_3_3_19: true
+bozkarcis_rule_6_3_3_20: true
+bozkarcis_rule_6_3_3_21: true
+bozkarcis_rule_6_3_3_22: true
+bozkarcis_rule_6_3_3_23: true
+bozkarcis_rule_6_3_3_24: true
+bozkarcis_rule_6_3_3_25: true
+bozkarcis_rule_6_3_3_26: true
+bozkarcis_rule_6_3_3_27: true
+bozkarcis_rule_6_3_3_28: true
+bozkarcis_rule_6_3_3_29: true
+bozkarcis_rule_6_3_3_30: true
+bozkarcis_rule_6_3_3_31: true
+bozkarcis_rule_6_3_3_32: true
+bozkarcis_rule_6_3_3_33: true
+bozkarcis_rule_6_3_3_34: true
+bozkarcis_rule_6_3_3_35: true
+bozkarcis_rule_6_3_3_36: true
+bozkarcis_rule_6_3_3_37: true
+# 6.3.4 Configure auditd File Access
+bozkarcis_rule_6_3_4_1: true
+bozkarcis_rule_6_3_4_2: true
+bozkarcis_rule_6_3_4_3: true
+bozkarcis_rule_6_3_4_4: true
+bozkarcis_rule_6_3_4_5: true
+bozkarcis_rule_6_3_4_6: true
+bozkarcis_rule_6_3_4_7: true
+bozkarcis_rule_6_3_4_8: true
+bozkarcis_rule_6_3_4_9: true
+bozkarcis_rule_6_3_4_10: true
+
+# Section 7 System Maintenance
+## 7.1 System File Permissions
+bozkarcis_rule_7_1_1: true
+bozkarcis_rule_7_1_2: true
+bozkarcis_rule_7_1_3: true
+bozkarcis_rule_7_1_4: true
+bozkarcis_rule_7_1_5: true
+bozkarcis_rule_7_1_6: true
+bozkarcis_rule_7_1_7: true
+bozkarcis_rule_7_1_8: true
+bozkarcis_rule_7_1_9: true
+bozkarcis_rule_7_1_10: true
+bozkarcis_rule_7_1_11: true
+bozkarcis_rule_7_1_12: true
+bozkarcis_rule_7_1_13: true
+## 7.2 Local User and Group Settings
+bozkarcis_rule_7_2_1: true
+bozkarcis_rule_7_2_2: true
+bozkarcis_rule_7_2_3: true
+bozkarcis_rule_7_2_4: true
+bozkarcis_rule_7_2_5: true
+bozkarcis_rule_7_2_6: true
+bozkarcis_rule_7_2_7: true
+bozkarcis_rule_7_2_8: true
+bozkarcis_rule_7_2_9: true
+
+############
+
+# Section 1
+
+# Warning Banner Content (issue, issue.net, motd)
+bozkarcis_warning_banner: Authorized users only. All activity may be monitored and reported.
+# End Banner
+
+## Control 1.8.x - Settings for GDM
+## 1.8 GDM graphical interface
+# There is no desktop environment for Siperal Bozkaros.
+
+# 1.8 Gnome Desktop
+bozkarcis_dconf_db_name: local
+
+# Section 2
+# Service configuration
+# Options are
+# Service
+# - false - removes package
+# - true - leaves package installed
+# Mask
+# - false - leaves service in current status
+# - true - sets service name to masked
+bozkarcis_autofs_services: false
+bozkarcis_autofs_mask: true
+bozkarcis_avahi_server: false
+bozkarcis_avahi_mask: false
+bozkarcis_cockpit_server: false
+bozkarcis_cockpit_mask: false
+bozkarcis_dhcp_server: false
+bozkarcis_dhcp_mask: false
+bozkarcis_dns_server: false
+bozkarcis_dns_mask: false
+bozkarcis_dnsmasq_server: false
+bozkarcis_dnsmasq_mask: false
+bozkarcis_ftp_server: false
+bozkarcis_ftp_mask: false
+bozkarcis_message_server: false # This is for messaging dovecot and cyrus-imap
+bozkarcis_message_mask: false
+bozkarcis_nfs_server: true
+bozkarcis_nfs_mask: true
+bozkarcis_print_server: false # replaces cups
+bozkarcis_print_mask: false
+bozkarcis_rpc_server: true
+bozkarcis_rpc_mask: true
+bozkarcis_rsync_server: false
+bozkarcis_rsync_mask: false
+bozkarcis_samba_server: false
+bozkarcis_samba_mask: false
+bozkarcis_snmp_server: false
+bozkarcis_snmp_mask: false
+bozkarcis_telnet_server: false
+bozkarcis_telnet_mask: false
+bozkarcis_tftp_server: false
+bozkarcis_tftp_mask: false
+bozkarcis_squid_server: false
+bozkarcis_squid_mask: false
+bozkarcis_httpd_server: false
+bozkarcis_httpd_mask: false
+bozkarcis_nginx_server: false
+bozkarcis_nginx_mask: false
+bozkarcis_xinetd_server: false
+bozkarcis_xinetd_mask: false
+bozkarcis_xwindow_server: false # will remove mask not an option
+bozkarcis_is_mail_server: false
+
+## Section 2.3 Service clients
+
+bozkarcis_ftp_client: false
+bozkarcis_openldap_clients_required: false
+bozkarcis_telnet_required: false
+bozkarcis_tftp_client: false
+
+# Section 3
+## Section 3 vars
+## Sysctl
+# Service configuration
+# Options are
+# Service
+# - false - removes package
+# - true - leaves package installed
+# Mask
+# - false - leaves service in current status
+# - true - sets service name to masked
+#
+# Setting both Service and Mask to false will remove the package if exists
+#
+bozkarcis_bluetooth_service: false
+bozkarcis_bluetooth_mask: false
+
+## IPv6 required
+bozkarcis_ipv6_required: false
+
+# bozkarcis_ipv6_disable defines the method of disabling IPv6, sysctl vs kernel
+bozkarcis_ipv6_disable_method: sysctl
+
+## 3.2 System network parameters (host only OR host and router)
+bozkarcis_is_router: false
+
+## Section 4
+### Firewall
+bozkarcis_firewall: firewalld
+
+# Rule 4.1.4
+# Name of the new firewall zone that should be live
+bozkarcis_active_firewall_zone: public
+# If set to accept change to one of DROP or DEFAULT
+# DEFAULT - Deny by default, allow by exception including ICMP
+# DROP - Will drop all attempts to connect that are not whitelisted
+bozkarcis_firewalld_target: DROP
+
+# Section 5
+
+rhel10_cis_sshd_config_file: /etc/ssh/sshd_config
+
+## 5.1.7 Note the following to understand precedence and layout, comma separated
+bozkarcis_sshd_allowusers: bozkaros
+bozkarcis_sshd_allowgroups:
+bozkarcis_sshd_denyusers: nobody
+bozkarcis_sshd_denygroups:
+
+## 5.2.7 set sugroup if differs from wheel
+bozkarcis_sugroup: sugroup
+
+## 5.3.2.1 Enable automation to create custom profile settings, using the setings above
+bozkarcis_authselect_custom_profile_create: false
+
+## 5.3.2.1 Enable automation to select custom profile options, using the settings above
+bozkarcis_authselect_custom_profile_select: false
+
+## 5.3.2.1 Authselect select false if using AD or RHEL ID mgmt
+bozkarcis_authselect_custom_profile_name: mpg_cis
+
+## 5.3.3.2.3 Set option used for password complexity
+# either mincall or credits - enabling to check for one option in settings
+bozkarcis_passwd_complex_option: minclass
+
+## 5.4.1.x login.defs password settings
+bozkarcis_pass_max_days: "365"
+bozkarcis_pass_min_days: "1"
+bozkarcis_pass_warn_age: "7"
+bozkarcis_inactive_lock_days: 40
+
+# Section 6
+
+# Control 6.1.x
+
+# aide setup via - cron, timer
+bozkarcis_aide_scan: cron
+
+## Logging 6.2.x.x
+
+## syslog
+## change to rsyslog/ journald or other
+bozkarcis_syslog: journald
+
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# Current variable configures the max amount of disk space the logs will use(thus, journal files
+# will not grow without bounds)
+# The variables below related to journald, please set these to your site specific values
+# These variable specifies how much disk space the journal may use up at most
+# Specify values in bytes or use K, M, G, T, P, E as units for the specified sizes.
+# See https://www.freedesktop.org/software/systemd/man/journald.conf.html for more information.
+bozkarcis_journald_systemmaxuse: 10M
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# Current variable configures the amount of disk space to keep free for other uses.
+bozkarcis_journald_systemkeepfree: 100G
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# This variable configures how much disk space the journal may use up at most.
+# Similar with 'bozkarcis_journald_systemmaxuse', but related to runtime space.
+bozkarcis_journald_runtimemaxuse: 10M
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# This variable configures the actual amount of disk space to keep free
+# Similar with 'bozkarcis_journald_systemkeepfree', but related to runtime space.
+bozkarcis_journald_runtimekeepfree: 100G
+## Control 6.2.1.3 - Ensure journald log rotation is configured per site policy
+# Current variable governs the settings for log retention(how long the log files will be kept).
+# Thus, it specifies the maximum time to store entries in a single journal
+# file before rotating to the next one. Set to 0 to turn off this feature.
+# The given values is interpreted as seconds, unless suffixed with the units
+# `year`, `month`, `week`, `day`, `h` or `m` to override the default time unit of seconds.
+# Values are Xm, Xh, Xday, Xweek, Xmonth, Xyear, for example 2week is two weeks
+# ATTENTION: Uncomment the keyword below when values are set!
+bozkarcis_journald_maxfilesec: 1month
+
+# Control 6.2.3. x
+## Set if host is a logserver
+bozkarcis_remote_log_server: false
+
+# Log server settings
+bozkarcis_remote_log_host: logagg.example.com
+bozkarcis_remote_log_port: 514
+bozkarcis_remote_log_protocol: tcp
+bozkarcis_remote_log_retrycount: 100
+bozkarcis_remote_log_queuesize: 1000
+
+# Control 7.1.12
+bozkarcis_exclude_unowned_search_path: \(! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" \)

@@ -3,7 +3,6 @@
   when: bozkarcis_rule_6_3_1_1
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.1.1
@@ -29,7 +28,6 @@
   when: bozkarcis_rule_6_3_1_2
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - grub
@@ -54,7 +52,6 @@
   when: bozkarcis_rule_6_3_1_3
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - grub
@@ -92,7 +89,6 @@
   when: bozkarcis_rule_6_3_1_4
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.1.4

@@ -3,7 +3,6 @@
   when: bozkarcis_rule_1_6_1
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - crypto
@@ -21,7 +20,6 @@
     - "'NO-SHA1' not in bozkarcis_crypto_policy_module"
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - crypto
@@ -51,7 +49,6 @@
     - "'NO-WEAKMAC' not in bozkarcis_crypto_policy_module"
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - crypto
@@ -81,7 +78,6 @@
     - "'NO-SSHCBC' not in bozkarcis_crypto_policy_module"
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - crypto

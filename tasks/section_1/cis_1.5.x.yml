@@ -3,7 +3,6 @@
   when: bozkarcis_rule_1_5_1
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_1.5.1
@@ -44,7 +43,6 @@
   when: bozkarcis_rule_1_5_2
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_1.5.2
@@ -88,7 +86,6 @@
   when: bozkarcis_rule_1_5_3
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - sysctl
     - rule_1.5.3
@@ -132,7 +129,6 @@
   when: bozkarcis_rule_1_5_4
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_1.5.4
@@ -176,7 +172,6 @@
   when: bozkarcis_rule_1_5_5
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_1.5.5
@@ -219,7 +214,6 @@
   when: bozkarcis_rule_1_5_6
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_1.5.6
@@ -261,7 +255,6 @@
   when: bozkarcis_rule_1_5_7
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_1.5.7
@@ -303,7 +296,6 @@
   when: bozkarcis_rule_1_5_8
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_1.5.8
@@ -345,7 +337,6 @@
   when: bozkarcis_rule_1_5_9
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - sysctl
     - rule_1.5.9
@@ -395,7 +386,6 @@
   when: bozkarcis_rule_1_5_10
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_1.5.10
     - NIST800-53R5_CM-6

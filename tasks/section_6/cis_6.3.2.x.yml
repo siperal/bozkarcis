@@ -3,7 +3,6 @@
   when: bozkarcis_rule_6_3_2_1
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.2.1
@@ -18,7 +17,6 @@
   when: bozkarcis_rule_6_3_2_2
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.2.2
@@ -33,7 +31,6 @@
   when: bozkarcis_rule_6_3_2_3
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.2.3
@@ -60,7 +57,6 @@
   when: bozkarcis_rule_6_3_2_4
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.2.4
@@ -89,7 +85,6 @@
     - bozkarcis_auditd_extra_conf_usage
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - NIST800-53R5_AU-2

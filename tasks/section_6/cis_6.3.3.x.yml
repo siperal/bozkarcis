@@ -4,7 +4,6 @@
   when: bozkarcis_rule_6_3_3_1
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.1
@@ -17,7 +16,6 @@
   when: bozkarcis_rule_6_3_3_2
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.2
@@ -30,7 +28,6 @@
   when: bozkarcis_rule_6_3_3_3
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.3
@@ -42,7 +39,6 @@
   when: bozkarcis_rule_6_3_3_4
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.4
@@ -56,7 +52,6 @@
   when: bozkarcis_rule_6_3_3_5
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.5
@@ -69,7 +64,6 @@
   when: bozkarcis_rule_6_3_3_6
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.6
@@ -82,7 +76,6 @@
   when: bozkarcis_rule_6_3_3_7
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.7
@@ -95,7 +88,6 @@
   when: bozkarcis_rule_6_3_3_8
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.8
@@ -108,7 +100,6 @@
   when: bozkarcis_rule_6_3_3_9
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.9
@@ -122,7 +113,6 @@
   when: bozkarcis_rule_6_3_3_10
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.10
@@ -147,7 +137,6 @@
   when: bozkarcis_rule_6_3_3_11
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.11
@@ -160,7 +149,6 @@
   when: bozkarcis_rule_6_3_3_12
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.12
@@ -173,7 +161,6 @@
   when: bozkarcis_rule_6_3_3_13
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.13
@@ -186,7 +173,6 @@
   when: bozkarcis_rule_6_3_3_14
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.14
@@ -199,7 +185,6 @@
   when: bozkarcis_rule_6_3_3_15
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.15
@@ -212,7 +197,6 @@
   when: bozkarcis_rule_6_3_3_16
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.16
@@ -225,7 +209,6 @@
   when: bozkarcis_rule_6_3_3_17
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.17
@@ -238,7 +221,6 @@
   when: bozkarcis_rule_6_3_3_18
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.18
@@ -251,7 +233,6 @@
   when: bozkarcis_rule_6_3_3_19
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.19
@@ -264,7 +245,6 @@
   when: bozkarcis_rule_6_3_3_20
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.20
@@ -277,7 +257,6 @@
   when: bozkarcis_rule_6_3_3_21
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.21
@@ -290,7 +269,6 @@
   when: bozkarcis_rule_6_3_3_22
   tags:
     - level2-server
-    - level2- workstation
     - patch
     - auditd
     - rule_6.3.3.22
@@ -303,7 +281,6 @@
   when: bozkarcis_rule_6_3_3_23
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.23
@@ -316,7 +293,6 @@
   when: bozkarcis_rule_6_3_3_24
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.24
@@ -329,7 +305,6 @@
   when: bozkarcis_rule_6_3_3_25
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.25
@@ -342,7 +317,6 @@
   when: bozkarcis_rule_6_3_3_26
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.26
@@ -356,7 +330,6 @@
   when: bozkarcis_rule_6_3_3_27
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.27
@@ -369,7 +342,6 @@
   when: bozkarcis_rule_6_3_3_28
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.28
@@ -384,7 +356,6 @@
   when: bozkarcis_rule_6_3_3_29
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.29
@@ -399,7 +370,6 @@
   when: bozkarcis_rule_6_3_3_30
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.30
@@ -412,7 +382,6 @@
   when: bozkarcis_rule_6_3_3_31
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.31
@@ -425,7 +394,6 @@
   when: bozkarcis_rule_6_3_3_32
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.32
@@ -438,7 +406,6 @@
   when: bozkarcis_rule_6_3_3_33
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.33
@@ -451,7 +418,6 @@
   when: bozkarcis_rule_6_3_3_34
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.34
@@ -464,7 +430,6 @@
   when: bozkarcis_rule_6_3_3_35
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.35
@@ -477,7 +442,6 @@
   when: bozkarcis_rule_6_3_3_36
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.3.36
@@ -489,7 +453,6 @@
   when: bozkarcis_rule_6_3_3_37
   tags:
     - level2-server
-    - level2-workstation
     - manual
     - patch
     - auditd

@@ -5,7 +5,6 @@
     - not system_is_container
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - NIST800-53R5_AU-3
     - NIST800-53R5_AU-12
@@ -23,24 +22,8 @@
         state: started
         enabled: true
 
-- name: "2.3.2 | PATCH | Ensure chrony is configured"
-  when:
-    - bozkarcis_rule_2_3_2
-    - not system_is_container
-  tags:
-    - level1-server
-    - level1-workstation
-    - patch
-    - rule_2.3.2
-    - NIST800-53R5_AU-3
-    - NIST800-53R5_AU-12
-  ansible.builtin.template:
-    src: etc/chrony.conf.j2
-    dest: /etc/chrony.conf
-    owner: root
-    group: root
-    mode: "u-x,go-wx"
-  notify: Restart chronyd
+#- name: "2.3.2 | PATCH | Ensure chrony is configured"
+# Already patched in OS/ISO.
 
 - name: "2.3.3 | PATCH | Ensure chrony is not run as the root user"
   when:
@@ -48,7 +31,6 @@
     - not system_is_container
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_2.3.3
   ansible.builtin.lineinfile:

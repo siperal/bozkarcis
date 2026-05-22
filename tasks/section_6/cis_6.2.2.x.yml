@@ -3,7 +3,6 @@
   when: bozkarcis_rule_6_2_2_2
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - journald
     - rule_6.2.2.2
@@ -36,7 +35,6 @@
   when: bozkarcis_rule_6_2_2_3
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - journald
     - rule_6.2.2.3
@@ -66,7 +64,6 @@
   when: bozkarcis_rule_6_2_2_4
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - journald
     - rule_6.2.2.4

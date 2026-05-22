@@ -97,7 +97,6 @@
   when: bozkarcis_rule_1_6_1
   tags:
     - level1-server
-    - level1-workstation
     - rule_1.6.1
     - crypto
   block:
@@ -177,7 +176,6 @@
     - '"cronie" not in ansible_facts.packages'
   tags:
     - level1-server
-    - level1-workstation
     - rule_5.1.1
     - cron
   ansible.builtin.package:
@@ -223,7 +221,6 @@
   tags:
     - rule_5.4.2.1
     - level1-server
-    - level1-workstation
     - users
   ansible.builtin.shell: |
     set -o pipefail
@@ -261,7 +258,6 @@
     - bozkarcis_rule_6_3_1_1
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - rule_6.3.1.1
     - auditd
@@ -291,7 +287,6 @@
   when: bozkarcis_rule_6_3_4_5 or bozkarcis_rule_6_3_4_6 or bozkarcis_rule_6_3_4_7
   tags:
     - level2-server
-    - level2-workstation
     - patch
     - auditd
     - rule_6.3.4.5
@@ -332,7 +327,6 @@
   when: bozkarcis_rule_7_2_8
   tags:
     - level1-server
-    - level1-workstation
     - rule_7.2.8
     - acl
   ansible.builtin.package:

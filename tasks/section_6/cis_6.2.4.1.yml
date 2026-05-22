@@ -3,7 +3,6 @@
   when: bozkarcis_rule_6_2_4_1
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - logfiles
     - rule_6.2.4.1

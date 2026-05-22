@@ -1,17 +1,16 @@
 ---
-
 galaxy_info:
-  author: "MindPoint Group"
-  description: "Apply the RHEL 10 CIS"
-  company: "MindPoint Group"
+  author: "Murat AYDIN"
+  description: "Apply CIS Server Level 1/2 on Siperal Bozkaros (RHEL10, Rocky derivative)"
+  company: "Siperal"
   license: MIT
-  role_name: rhel10_cis
-  namespace: ansible-lockdown
+  role_name: bozkarcis
+  namespace: siperal
   min_ansible_version: 2.12.1
   platforms:
     - name: EL
       versions:
-        - '10'
+        - "10"
   galaxy_tags:
     - system
     - security
@@ -25,7 +24,8 @@ galaxy_info:
     - rhel10
     - cis
     - rocky
-    - alma
+    - siperal
+    - bozkaros
 collections:
   - community.general
   - community.crypto

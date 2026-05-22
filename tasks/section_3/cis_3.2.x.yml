@@ -3,7 +3,6 @@
   when: bozkarcis_rule_3_2_1
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_3.2.1
     - atm
@@ -23,7 +22,6 @@
   when: bozkarcis_rule_3_2_2
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_3.2.2
     - can
@@ -43,7 +41,6 @@
   when: bozkarcis_rule_3_2_3
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_3.2.3
     - dccp
@@ -63,7 +60,6 @@
   when: bozkarcis_rule_3_2_4
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_3.2.4
     - tipc
@@ -83,7 +79,6 @@
   when: bozkarcis_rule_3_2_5
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_3.2.5
     - rds
@@ -103,7 +98,6 @@
   when: bozkarcis_rule_3_2_6
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_3.2.6
     - sctp

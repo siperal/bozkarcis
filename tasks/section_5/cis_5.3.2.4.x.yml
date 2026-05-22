@@ -5,7 +5,6 @@
     - bozkarcis_disruption_high
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - rule_5.3.2.4.1
     - pam
@@ -40,7 +39,6 @@
     - bozkarcis_disruption_high
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - pam
     - rule_5.3.2.4.2
@@ -81,7 +79,6 @@
     - bozkarcis_disruption_high
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - pam
     - rule_5.3.2.4.3
@@ -123,7 +120,6 @@
     - bozkarcis_disruption_high
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - pam
     - rule_5.3.2.4.4

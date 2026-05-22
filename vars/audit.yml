@@ -6,7 +6,7 @@ audit_cmd_timeout: 120000
 
 ## Goss configuration information
 # Where the goss audit configuration will be stored - NOTE benchmark-audit is expected
-audit_conf_dir: "{{ audit_conf_dest | default('/opt') }}/{{ benchmark }}-Audit"
+audit_conf_dir: "{{ audit_conf_dest | default('/opt') }}/{{ benchmark }}-audit"
 
 # If changed these can affect other products
 pre_audit_outfile: "{{ audit_log_dir }}/{{ ansible_facts.hostname }}-{{ benchmark }}-{{ benchmark_version }}_pre_scan_{{ ansible_facts.date_time.epoch }}.{{ audit_format }}"

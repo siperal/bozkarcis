@@ -1,5 +1,5 @@
 ---
-# defaults file for rhel10-cis
+# defaults file for Siperal Bozkaros CIS
 # WARNING:
 # These values may be overridden by other vars-setting options(e.g. like the below 'container_vars_file'), as explained here:
 # https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
@@ -27,9 +27,7 @@ bozkarcis_section6: true
 bozkarcis_section7: true
 
 # This is used for audit purposes to run only specific level use the tags
-# e.g.
-# - level1-server
-# - level2-workstation
+# e.g. level1-server
 bozkarcis_level_1: true
 bozkarcis_level_2: true
 
@@ -79,7 +77,7 @@ setup_audit: false
 # separately maintained audit role using Goss
 # is carried out.
 # This runs the audit and gets the latest content
-run_audit: false
+run_audit: true
 # Run heavy tests - some tests can have more impact on a system enabling these can have greater impact on a system
 audit_run_heavy_tests: true
 # Ability to limit the number of concurrent processes used by goss (default 50)
@@ -97,10 +95,6 @@ audit_only: false
 # - if 'download':
 #    - the GitHub Goss-releases URL will be used for a fresh-download, via 'audit_bin_url' and 'audit_pkg_arch_name' vars
 get_audit_binary_method: copy
-
-## if get_audit_binary_method - copy the following needs to be updated for your environment
-## it is expected that it will be copied from somewhere accessible to the control node
-## e.g copy from ansible control node to remote host
 audit_bin_copy_location: /usr/local/bin/goss
 
 ## How to retrieve the audit role
@@ -114,15 +108,10 @@ audit_bin_copy_location: /usr/local/bin/goss
 # - 'archive': same as 'copy', only that the specified filepath needs to be unpacked.
 # - 'get_url': Download from url as specified in variable `audit_files_url`
 audit_content: copy
-
-# If using either archive, copy, get_url:
-## Note will work with .tar files - zip will require extra configuration
-### If using get_url this is expecting github url in tar.gz format e.g.
-### https://github.com/ansible-lockdown/BOZKARCIS-Audit/archive/refs/heads/benchmark-v1.0.0.tar.gz
-audit_conf_source: "some path or url to copy from"
+audit_conf_source: "./audit"
 
 # Destination for the audit content to be placed on managed node
-# note may not need full path e.g. /opt with the directory being the {{ benchmark }}-Audit directory
+# note may not need full path e.g. /opt with the directory being the {{ benchmark }}-audit directory
 audit_conf_dest: "/opt"
 
 # Where the audit logs are stored
@@ -245,13 +234,6 @@ bozkarcis_rule_1_7_3: true
 bozkarcis_rule_1_7_4: true
 bozkarcis_rule_1_7_5: true
 bozkarcis_rule_1_7_6: true
-# Gnome Display Manager
-bozkarcis_rule_1_8_1: true
-bozkarcis_rule_1_8_2: true
-bozkarcis_rule_1_8_3: true
-bozkarcis_rule_1_8_4: true
-bozkarcis_rule_1_8_5: true
-bozkarcis_rule_1_8_6: true
 
 ## Section 2 Fixes
 # Section 2 rules are controlling Services (Special Purpose Services, and service clients)
@@ -616,31 +598,7 @@ bozkarcis_selinux_relabel_enabled: false
 
 ################### bootloader password #####################################
 #
-# Two options for setting the bootloader password
-#
-# Will also need to add the set_boot_pass variable to the task to ensure the password is set.
-#
-# This variable governs whether a bootloader password should be set in '/boot/grub2/user.cfg' file.
-bozkarcis_set_boot_pass: false
-#
-# Option 1: Set the bootloader password and salt – requires the passlib Python module
-# to be available on the Ansible controller.
-# Set this value to something secure to have predictable hashes,
-# which will prevent unnecessary changes.
-
-bozkarcis_bootloader_salt: ""
-
-# This variable stores the GRUB bootloader password to be written
-# to the '/boot/grub2/user.cfg' file. The default value must be changed.
-
-bozkarcis_bootloader_password: "password" # pragma: allowlist secret
-
-# Option 2: Set the bootloader password hash – if the salt value is empty,
-# the password will be set using the variable below.
-# If you are not using the bootloader hash filter, you can set it here
-# in encrypted format, e.g. grub.pbkdf2.sha512.hashstring
-
-bozkarcis_bootloader_password_hash: "grub.pbkdf2.sha512.changethispassword" # pragma: allowlist secret
+# Siperal Bozkaros comes with a pre-set bootloader password when the image is built for the requester.
 
 ####################################################
 
@@ -701,14 +659,10 @@ bozkarcis_additional_crypto_policy_module: ""
 # - 1.7.1 - Ensure message of the day is configured properly
 # - 1.7.2 - Ensure local login warning banner is configured properly
 # - 1.7.3 - Ensure remote login warning banner is configured properly
-# This variable stores the content for the Warning Banner(relevant for issue, issue.net, motd).
-bozkarcis_warning_banner: Authorized users only. All activity may be monitored and reported.
-# End Banner
+# SKIP: issue, issue.net and motd are already configured properly in the ISO itself.
 
 ## Control 1.8.x - Settings for GDM
-# If the system is running a desktop this will turn off removal of the GUI pkgs
-# and configure the required settings
-rhel10_desktop_required: false
+# There is no desktop environment for Siperal Bozkaros.
 
 # This variable governs the number of seconds of inactivity before the screen goes blank.
 # Set max value for idle-delay in seconds (between 1 and 900)
@@ -839,25 +793,11 @@ bozkarcis_tftp_client: false
 # This is not set as part of CIS but makes sense to start it by default.
 bozkarcis_start_chronyd: true
 
-## Control 2.3.2 Time Synchronization servers - used in template file chrony.conf.j2
-# The following variable represents a list of time servers used
-# for configuring chrony, timesyncd, and ntp.
-# Each list item contains two settings, `name` (the domain name of the server) and synchronization `options`.
-# The default setting for the `options` is `minpoll` but `iburst` can be used, please refer to the documentation
-# of the time synchronization mechanism you are using.
-bozkarcis_time_synchronization_servers:
-  - name: 0.pool.ntp.org
-    options: minpoll 8
-  - name: 1.pool.ntp.org
-    options: minpoll 8
-  - name: 2.pool.ntp.org
-    options: minpoll 8
-  - name: 3.pool.ntp.org
-    options: minpoll 8
-# This variable, if set to 'true'(default), will inform the kernel the system clock is kept synchronized
-# and the kernel will update the real-time clock every 11 minutes. Otherwise, if 'rtcsync' option is
-# disabled, chronyd will not be in sync(kernel discipline is disabled, 11 minutes mode will be off).
-bozkarcis_chrony_server_rtcsync: false
+## Control 2.3.2 Time Synchronization servers
+# Already set in the ISO itself.
+
+# This variable, if set to 'true'(default), will inform the kernel the system clock is kept synchronized and the kernel will update the real-time clock every 11 minutes. Otherwise, if 'rtcsync' option is disabled, chronyd will not be in sync(kernel discipline is disabled, 11 minutes mode will be off).
+bozkarcis_chrony_server_rtcsync: true
 # This variable configures the values to be used by chronyd to gradually correct any time offset,
 # by slowing down/speeding up the clock. An example of this directive usage would be:
 # 'makestep 1000 10'.
@@ -874,7 +814,7 @@ bozkarcis_chrony_server_minsources: 2
 
 ## Control 3.1.1 - Ensure IPv6 status is identified
 # This variable governs whether ipv6 is enabled or disabled.
-bozkarcis_ipv6_required: true
+bozkarcis_ipv6_required: false
 # bozkarcis_ipv6_disable defines the method of disabling IPv6, sysctl vs kernel
 bozkarcis_ipv6_disable_method: "sysctl"
 

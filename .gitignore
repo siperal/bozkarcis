@@ -56,17 +56,5 @@ travis.env
 *vault_pass*
 .vault_pass
 
-# Lockdown-specific
-benchparse/
-*xccdf.xml
-*.retry
-*.pdf
-*history.md
-*plan.md
-*qa_report*
-
-# GitHub Action/Workflow files
-.github/
-
 # ansible-lint
 .ansible/

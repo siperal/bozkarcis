@@ -6,7 +6,6 @@
     - bozkarcis_allow_authselect_updates
   tags:
     - level1-server
-    - level1-workstation
     - manual
     - patch
     - authselect
@@ -47,7 +46,6 @@
     - "'with-faillock' not in prelim_authselect_current_profile.stdout"
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - NIST800-53R5_AC-7
@@ -65,7 +63,6 @@
     - "'with-pwquality' not in prelim_authselect_current_profile.stdout"
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - NIST800-53R5_CM-6
@@ -83,7 +80,6 @@
     - "'with-pwhistory' not in prelim_authselect_current_profile.stdout"
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - NIST800-53R5_IA-5
@@ -100,7 +96,6 @@
     - bozkarcis_allow_authselect_updates
   tags:
     - level1-server
-    - level1-workstation
     - automated
     - patch
     - NIST800-53R5_IA-5

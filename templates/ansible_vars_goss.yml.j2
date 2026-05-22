@@ -19,9 +19,7 @@ bozkarcis_section6: {{ bozkarcis_section6 }}
 bozkarcis_section7: {{ bozkarcis_section7 }}
 
 # This is used for audit purposes to run only specific level use the tags
-# e.g.
-# - level1-server
-# - level2-workstation
+# e.g. level1-server
 bozkarcis_level_1: {{ bozkarcis_level_1 }}
 bozkarcis_level_2: {{ bozkarcis_level_2 }}
 
@@ -143,14 +141,6 @@ bozkarcis_rule_1_7_3: {{ bozkarcis_rule_1_7_3 }}
 bozkarcis_rule_1_7_4: {{ bozkarcis_rule_1_7_4 }}
 bozkarcis_rule_1_7_5: {{ bozkarcis_rule_1_7_5 }}
 bozkarcis_rule_1_7_6: {{ bozkarcis_rule_1_7_6 }}
-
-# Gnome Display Manager
-bozkarcis_rule_1_8_1: {{ bozkarcis_rule_1_8_1 }}
-bozkarcis_rule_1_8_2: {{ bozkarcis_rule_1_8_2 }}
-bozkarcis_rule_1_8_3: {{ bozkarcis_rule_1_8_3 }}
-bozkarcis_rule_1_8_4: {{ bozkarcis_rule_1_8_4 }}
-bozkarcis_rule_1_8_5: {{ bozkarcis_rule_1_8_5 }}
-bozkarcis_rule_1_8_6: {{ bozkarcis_rule_1_8_6 }}
 
 # Section 2 rules are controlling Services (Special Purpose Services, and service clients)
 ## Configure Server Services
@@ -455,21 +445,15 @@ bozkarcis_rule_7_2_9: {{ bozkarcis_rule_7_2_9 }}
 
 ## Section 1 vars
 
-## Control 1.4.1
-# This variable governs whether a bootloader password should be set in '/boot/grub2/user.cfg' file.
-bozkarcis_set_boot_pass: {{ bozkarcis_set_boot_pass }}
-
 ## Controls:
 # - 1.7.1 - Ensure message of the day is configured properly
 # - 1.7.2 - Ensure local login warning banner is configured properly
 # - 1.7.3 - Ensure remote login warning banner is configured properly
-# This variable stores the content for the Warning Banner(relevant for issue, issue.net, motd).
-bozkarcis_warning_banner: {{ bozkarcis_warning_banner }}
-# End Banner
+# # SKIP: issue, issue.net and motd are already configured properly in the ISO itself.
 
 ## Control 1.8.x - Settings for GDM
 ## 1.8 GDM graphical interface
-desktop_required: {{ rhel10_desktop_required }}
+# There is no graphical interface for Siperal Bozkaros Server.
 
 ## Section 2. Services
 

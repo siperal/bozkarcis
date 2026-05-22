@@ -5,7 +5,6 @@
     - required_mount not in prelim_mount_names
   tags:
     - level2-server
-    - level2-workstation
     - audit
     - mounts
     - rule_1.1.2.6.1
@@ -37,7 +36,6 @@
     - bozkarcis_rule_1_1_2_6_2
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - mounts
     - rule_1.1.2.6.2
@@ -61,7 +59,6 @@
     - bozkarcis_rule_1_1_2_6_3
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - mounts
     - rule_1.1.2.6.3
@@ -82,7 +79,6 @@
     - bozkarcis_rule_1_1_2_6_4
   tags:
     - level1-server
-    - level1-workstation
     - patch
     - mounts
     - rule_1.1.2.6.4
