@@ -1,7 +1,6 @@
 ---
-
 - name: "7.2.1 | AUDIT | Ensure accounts in /etc/passwd use shadowed passwords"
-  when: rhel10cis_rule_7_2_1
+  when: bozkarcis_rule_7_2_1
   tags:
     - level1-server
     - level1-workstation
@@ -31,7 +30,7 @@
         file: warning_facts.yml
 
 - name: "7.2.2 | PATCH | Ensure /etc/shadow password fields are not empty"
-  when: rhel10cis_rule_7_2_2
+  when: bozkarcis_rule_7_2_2
   tags:
     - level1-server
     - level1-workstation
@@ -56,7 +55,7 @@
         - "{{ discovered_empty_password_acct.stdout_lines }}"
 
 - name: "7.2.3 | AUDIT | Ensure all groups in /etc/passwd exist in /etc/group"
-  when: rhel10cis_rule_7_2_3
+  when: bozkarcis_rule_7_2_3
   tags:
     - level1-server
     - level1-workstation
@@ -91,7 +90,7 @@
         file: warning_facts.yml
 
 - name: "7.2.4 | AUDIT | Ensure no duplicate UIDs exist"
-  when: rhel10cis_rule_7_2_4
+  when: bozkarcis_rule_7_2_4
   tags:
     - level1-server
     - level1-workstation
@@ -122,7 +121,7 @@
         file: warning_facts.yml
 
 - name: "7.2.5 | AUDIT | Ensure no duplicate GIDs exist"
-  when: rhel10cis_rule_7_2_5
+  when: bozkarcis_rule_7_2_5
   tags:
     - level1-server
     - level1-workstation
@@ -157,7 +156,7 @@
         file: warning_facts.yml
 
 - name: "7.2.6 | AUDIT | Ensure no duplicate user names exist"
-  when: rhel10cis_rule_7_2_6
+  when: bozkarcis_rule_7_2_6
   tags:
     - level1-server
     - level1-workstation
@@ -192,7 +191,7 @@
         file: warning_facts.yml
 
 - name: "7.2.7 | AUDIT | Ensure no duplicate group names exist"
-  when: rhel10cis_rule_7_2_7
+  when: bozkarcis_rule_7_2_7
   tags:
     - level1-server
     - level1-workstation
@@ -227,7 +226,7 @@
         file: warning_facts.yml
 
 - name: "7.2.8 | PATCH | Ensure local interactive user home directories are configured"
-  when: rhel10cis_rule_7_2_8
+  when: bozkarcis_rule_7_2_8
   tags:
     - level1-server
     - level1-workstation
@@ -269,8 +268,8 @@
 
 - name: "7.2.9 | PATCH | Ensure local interactive user dot files access is configured"
   when:
-    - rhel10cis_rule_7_2_9
-    - rhel10cis_disruption_high
+    - bozkarcis_rule_7_2_9
+    - bozkarcis_disruption_high
   tags:
     - level1-server
     - level1-workstation
@@ -283,7 +282,7 @@
     - NIST800-53R5_CM-7
     - NIST800-53R5_IA-5
   vars:
-    warn_control_id: '7.2.9'
+    warn_control_id: "7.2.9"
   block:
     - name: "7.2.9 | AUDIT | Ensure local interactive user dot files access is configured"
       ansible.builtin.shell: |
@@ -297,7 +296,7 @@
     - name: "7.2.9 | AUDIT | Ensure local interactive user dot files access is configured | Warning on files found"
       when:
         - discovered_homedir_hidden_files.stdout | length > 0
-        - not rhel10cis_dotperm_ansiblemanaged
+        - not bozkarcis_dotperm_ansiblemanaged
       ansible.builtin.debug:
         msg:
           - "Warning!! Please investigate that hidden files found in users home directories match control requirements."
@@ -305,14 +304,14 @@
     - name: "7.2.9 | AUDIT | Ensure local interactive user dot files access is configured | Set warning count"
       when:
         - discovered_homedir_hidden_files.stdout | length > 0
-        - not rhel10cis_dotperm_ansiblemanaged
+        - not bozkarcis_dotperm_ansiblemanaged
       ansible.builtin.import_tasks:
         file: warning_facts.yml
 
     - name: "7.2.9 | AUDIT | Ensure local interactive user dot files access is configured"
       when:
         - discovered_homedir_hidden_files.stdout | length > 0
-        - rhel10cis_dotperm_ansiblemanaged
+        - bozkarcis_dotperm_ansiblemanaged
       block:
         - name: "7.2.9 | AUDIT | Ensure local interactive user dot files access is configured | Changes files if configured .bash_history & .netrc"
           when:
@@ -320,15 +319,15 @@
             - item | basename in ['.bash_history','.netrc']
           ansible.builtin.file:
             path: "{{ item }}"
-            mode: 'u-x,go-rwx'
+            mode: "u-x,go-rwx"
           failed_when: discovered_dot_bash_history_to_change.state not in '[ file, absent ]'
           register: discovered_dot_bash_history_to_change
           loop: "{{ discovered_homedir_hidden_files.stdout_lines }}"
 
         - name: "7.2.9 | AUDIT | Ensure local interactive user dot files access is configured | Changes files if configured file mode"
           ansible.builtin.file:
-            path: '{{ item }}'
-            mode: 'u-x,go-wx'
+            path: "{{ item }}"
+            mode: "u-x,go-wx"
           failed_when: discovered_dot_mode_to_change.state not in '[ file, absent ]'
           register: discovered_dot_mode_to_change
           loop: "{{ discovered_homedir_hidden_files.stdout_lines }}"
@@ -344,8 +343,8 @@
 
         - name: "7.2.9 | PATCH | Ensure local interactive user dot files access is configured | Changes files if configured"
           ansible.builtin.file:
-            path: '{{ item }}'
-            mode: 'go-w'
+            path: "{{ item }}"
+            mode: "go-w"
             owner: "{{ prelim_captured_passwd_data | selectattr('dir', 'in', prelim_interactive_users_home.stdout_lines) | selectattr('dir', 'in', item) | map(attribute='uid') | last }}"
             group: "{{ prelim_captured_passwd_data | selectattr('dir', 'in', prelim_interactive_users_home.stdout_lines) | selectattr('dir', 'in', item) | map(attribute='gid') | last }}"
           with_items: "{{ discovered_homedir_hidden_files.stdout_lines }}"

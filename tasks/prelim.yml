@@ -89,12 +89,12 @@
           {{ prelim_mount_point_fs_and_options }}
 
     - name: "PRELIM | AUDIT | Debug of mount variables to assist in troubleshooting"
-      when: rhel10cis_debug_mount_data
+      when: bozkarcis_debug_mount_data
       ansible.builtin.debug:
         msg: "{{ prelim_mount_point_fs_and_options }}"
 
 - name: "PRELIM | PATCH | Setup crypto-policy"
-  when: rhel10cis_rule_1_6_1
+  when: bozkarcis_rule_1_6_1
   tags:
     - level1-server
     - level1-workstation
@@ -133,7 +133,7 @@
     - name: "PRELIM | AUDIT | Set legacy boot and grub path | Bios"
       when: not prelim_efi_boot.stat.exists
       ansible.builtin.set_fact:
-        rhel10cis_legacy_boot: true
+        bozkarcis_legacy_boot: true
         grub2_path: /etc/grub2.cfg
 
     - name: "PRELIM | AUDIT | Set grub fact | UEFI"
@@ -149,7 +149,7 @@
 
 - name: "PRELIM | AUDIT | Wireless adapter pre-requisites"
   when:
-    - rhel10cis_rule_3_1_2
+    - bozkarcis_rule_3_1_2
     - not system_is_container
   tags: always
   block:
@@ -166,14 +166,14 @@
       when:
         - prelim_wireless_adapters.rc == 0
         - "'NetworkManager' not in ansible_facts.packages"
-        - rhel10cis_install_network_manager
+        - bozkarcis_install_network_manager
       ansible.builtin.package:
-        name: "{{ rhel10cis_network_manager_package_name }}"
+        name: "{{ bozkarcis_network_manager_package_name }}"
         state: present
 
 - name: "PRELIM | PATCH | Install Cronie"
   when:
-    - rhel10cis_rule_5_1_1
+    - bozkarcis_rule_5_1_1
     - '"cronie" not in ansible_facts.packages'
   tags:
     - level1-server
@@ -190,36 +190,36 @@
     paths:
       - /etc/security/pwquality.conf.d/
       - /etc/pam.d/*-auth
-    patterns: '*.conf'
+    patterns: "*.conf"
   register: prelim_pam_pwquality_confs
 
 # Added to ensure ssh drop in file exists if not default /etc/ssh/sshd_config
 - name: "PRELIM | PATCH | SSH Config file is not exist"
   when:
-    - rhel10cis_sshd_config_file != '/etc/ssh/sshd_config'
+    - bozkarcis_sshd_config_file != '/etc/ssh/sshd_config'
     - "'openssh-server' in ansible_facts.packages"
   tags:
     - always
     - level1_server
     - level1_workstation
   ansible.builtin.file:
-    path: "{{ rhel10cis_sshd_config_file }}"
+    path: "{{ bozkarcis_sshd_config_file }}"
     owner: root
     group: root
-    mode: 'u-x,go-rwx'
+    mode: "u-x,go-rwx"
     state: touch
 
 - name: "PRELIM | PATCH | sshd_config.d/50-redhat.conf exists"
   when:
-    - rhel10cis_rule_5_1_10 or
-      rhel10cis_rule_5_1_11
+    - bozkarcis_rule_5_1_10 or
+      bozkarcis_rule_5_1_11
   tags: always
   ansible.builtin.stat:
     path: /etc/ssh/sshd_config.d/50-redhat.conf
   register: prelim_sshd_50_redhat_file
 
 - name: "PRELIM | AUDIT | Gather UID 0 accounts other than root"
-  when: rhel10cis_rule_5_4_2_1
+  when: bozkarcis_rule_5_4_2_1
   tags:
     - rule_5.4.2.1
     - level1-server
@@ -234,15 +234,15 @@
 
 - name: "PRELIM | PATCH | Journald config directory"
   when:
-    - rhel10cis_syslog == 'journald'
-    - rhel10cis_rule_6_2_1_3 or rhel10cis_rule_6_2_1_4
+    - bozkarcis_syslog == 'journald'
+    - bozkarcis_rule_6_2_1_3 or bozkarcis_rule_6_2_1_4
   tags: always
   block:
     - name: "PRELIM | PATCH | Create journald config directory"
       ansible.builtin.file:
         path: /etc/systemd/journald.conf.d
         state: directory
-        mode: 'u+rwx,go-w'
+        mode: "u+rwx,go-w"
         owner: root
         group: root
       register: prelim_journald_confdir_created
@@ -258,7 +258,7 @@
 - name: "PRELIM | PATCH | Configure System Accounting (auditd)"
   when:
     - '"auditd" not in ansible_facts.packages'
-    - rhel10cis_rule_6_3_1_1
+    - bozkarcis_rule_6_3_1_1
   tags:
     - level2-server
     - level2-workstation
@@ -278,7 +278,7 @@
   register: prelim_auditd_immutable_check
 
 - name: "PRELIM | AUDIT | Discover audit logfile"
-  when: rhel10cis_rule_6_3_4_1 or rhel10cis_rule_6_3_4_2 or rhel10cis_rule_6_3_4_3 or rhel10cis_rule_6_3_4_4
+  when: bozkarcis_rule_6_3_4_1 or bozkarcis_rule_6_3_4_2 or bozkarcis_rule_6_3_4_3 or bozkarcis_rule_6_3_4_4
   tags: always
   ansible.builtin.shell: |
     set -o pipefail
@@ -288,7 +288,7 @@
   register: prelim_auditd_logfile
 
 - name: "PRELIM | AUDIT | Audit conf and rules files | list files"
-  when: rhel10cis_rule_6_3_4_5 or rhel10cis_rule_6_3_4_6 or rhel10cis_rule_6_3_4_7
+  when: bozkarcis_rule_6_3_4_5 or bozkarcis_rule_6_3_4_6 or bozkarcis_rule_6_3_4_7
   tags:
     - level2-server
     - level2-workstation
@@ -305,7 +305,7 @@
   register: prelim_auditd_conf_files
 
 - name: "PRELIM | AUDIT | Discover Interactive UID_MIN and UID_MAX from /etc/login.defs"
-  when: rhel10cis_discover_int_uid
+  when: bozkarcis_discover_int_uid
   tags: always
   block:
     - name: "PRELIM | AUDIT | Capture UID_MIN from /etc/login.defs"
@@ -329,7 +329,7 @@
     prelim_max_int_uid: "{{ prelim_uid_max_id.stdout | default(max_int_uid) }}"
 
 - name: "PRELIM | PATCH | Install ACL if 7.2.8"
-  when: rhel10cis_rule_7_2_8
+  when: bozkarcis_rule_7_2_8
   tags:
     - level1-server
     - level1-workstation

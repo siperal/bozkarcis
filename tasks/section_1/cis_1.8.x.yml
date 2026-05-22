@@ -1,8 +1,7 @@
 ---
-
 - name: "1.8.1 | PATCH | Ensure GDM login banner is configured"
   when:
-    - rhel10cis_rule_1_8_1
+    - bozkarcis_rule_1_8_1
     - rhel10_desktop_required
   tags:
     - level1-server
@@ -27,18 +26,21 @@
         create: true
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
       loop:
         - { regexp: "user-db", line: "user-db:user" }
         - { regexp: "system-db", line: "system-db:local" }
-        - { regexp: "file-db", line: "file-db:/usr/share/gdm/greeter-dconf-defaults" }
+        - {
+            regexp: "file-db",
+            line: "file-db:/usr/share/gdm/greeter-dconf-defaults",
+          }
 
     - name: "1.8.1 | PATCH | Ensure GDM login banner is configured | Locks directory exists"
       ansible.builtin.file:
         path: /etc/dconf/db/local.d/locks
         state: directory
-        mode: 'go=rx'
+        mode: "go=rx"
 
     - name: "1.8.1 | PATCH | Ensure GDM login banner is configured | create lock file"
       ansible.builtin.template:
@@ -46,7 +48,7 @@
         dest: /etc/dconf/db/local.d/locks/60-banner-message
         owner: root
         group: root
-        mode: 'go-wx'
+        mode: "go-wx"
 
     - name: "1.8.2 | PATCH | Ensure GDM disable-user-list is configured | gdm profile"
       ansible.builtin.template:
@@ -54,12 +56,12 @@
         dest: /etc/dconf/db/local.d/060-banner-message
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
 
 - name: "1.8.2 | PATCH | Ensure GDM disable-user-list is configured"
   when:
-    - rhel10cis_rule_1_8_2
+    - bozkarcis_rule_1_8_2
     - rhel10_desktop_required
   tags:
     - level1-server
@@ -78,7 +80,7 @@
         create: true
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
       loop:
         - { regexp: "user-db", line: "user-db:user" }
@@ -88,7 +90,7 @@
       ansible.builtin.file:
         path: /etc/dconf/db/local.d/locks
         state: directory
-        mode: 'go=rx'
+        mode: "go=rx"
 
     - name: "1.8.2 | PATCH | Ensure GDM disable-user-list is configured | create lock file"
       ansible.builtin.template:
@@ -96,7 +98,7 @@
         dest: /etc/dconf/db/local.d/locks/60-login-screen
         owner: root
         group: root
-        mode: 'go-wx'
+        mode: "go-wx"
 
     - name: "1.8.2 | PATCH | Ensure GDM disable-user-list is configured | gdm profile"
       ansible.builtin.template:
@@ -104,12 +106,12 @@
         dest: /etc/dconf/db/local.d/60-login-screen
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
 
 - name: "1.8.3 | PATCH | Ensure GDM screen lock is configured"
   when:
-    - rhel10cis_rule_1_8_3
+    - bozkarcis_rule_1_8_3
     - rhel10_desktop_required
   tags:
     - level1-server
@@ -128,7 +130,7 @@
         create: true
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
       loop:
         - { regexp: "user-db", line: "user-db:user" }
@@ -138,7 +140,7 @@
       ansible.builtin.file:
         path: /etc/dconf/db/local.d/locks
         state: directory
-        mode: 'go=rx'
+        mode: "go=rx"
 
     - name: "1.8.3 | PATCH | Ensure GDM screen lock is configured | create lock file"
       ansible.builtin.template:
@@ -146,7 +148,7 @@
         dest: /etc/dconf/db/local.d/locks/60-screensaver
         owner: root
         group: root
-        mode: 'go-wx'
+        mode: "go-wx"
 
     - name: "1.8.3 | PATCH | Ensure GDM screen lock is configured | gdm profile"
       ansible.builtin.template:
@@ -154,12 +156,12 @@
         dest: /etc/dconf/db/local.d/60-screensaver
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
 
 - name: "1.8.4 | PATCH | Ensure GDM automount is configured"
   when:
-    - rhel10cis_rule_1_8_4
+    - bozkarcis_rule_1_8_4
     - rhel10_desktop_required
   tags:
     - level2-server
@@ -179,7 +181,7 @@
         create: true
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
       loop:
         - { regexp: "user-db", line: "user-db:user" }
@@ -189,7 +191,7 @@
       ansible.builtin.file:
         path: /etc/dconf/db/local.d/locks
         state: directory
-        mode: 'go=rx'
+        mode: "go=rx"
 
     - name: "1.8.4 | PATCH | Ensure GDM automount is configured | create lock file"
       ansible.builtin.template:
@@ -197,7 +199,7 @@
         dest: /etc/dconf/db/local.d/locks/60-automount
         owner: root
         group: root
-        mode: 'go-wx'
+        mode: "go-wx"
 
     - name: "1.8.4 | PATCH | Ensure GDM automount is configured | gdm profile"
       ansible.builtin.template:
@@ -205,12 +207,12 @@
         dest: /etc/dconf/db/local.d/60-automount
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
 
 - name: "1.8.5 | PATCH | Ensure GDM autorun-never is configured"
   when:
-    - rhel10cis_rule_1_8_5
+    - bozkarcis_rule_1_8_5
     - rhel10_desktop_required
   tags:
     - level1-server
@@ -229,7 +231,7 @@
         create: true
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
       loop:
         - { regexp: "user-db", line: "user-db:user" }
@@ -239,7 +241,7 @@
       ansible.builtin.file:
         path: /etc/dconf/db/local.d/locks
         state: directory
-        mode: 'go=rx'
+        mode: "go=rx"
 
     - name: "1.8.5 | PATCH | Ensure GDM autorun-never is configured | create lock file"
       ansible.builtin.template:
@@ -247,7 +249,7 @@
         dest: /etc/dconf/db/local.d/locks/60-media-autorun
         owner: root
         group: root
-        mode: 'go-wx'
+        mode: "go-wx"
 
     - name: "1.8.5 | PATCH | Ensure GDM autorun-never is configured | gdm profile"
       ansible.builtin.template:
@@ -255,12 +257,12 @@
         dest: /etc/dconf/db/local.d/60-media-autorun
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Reload dconf
 
 - name: "1.8.6 | PATCH | Ensure Xwayland is configured"
   when:
-    - rhel10cis_rule_1_8_6
+    - bozkarcis_rule_1_8_6
     - rhel10_desktop_required
   tags:
     - level2-server
@@ -272,4 +274,4 @@
     path: /etc/gdm/custom.conf
     regexp: WaylandEnable\s*=\s*true
     line: WaylandEnable=false
-    insertafter: '[daemon]'
+    insertafter: "[daemon]"

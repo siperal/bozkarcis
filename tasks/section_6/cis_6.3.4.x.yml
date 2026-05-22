@@ -1,7 +1,6 @@
 ---
-
 - name: "6.3.4.1 | PATCH | Ensure the audit log file directory mode is configured"
-  when: rhel10cis_rule_6_3_4_1
+  when: bozkarcis_rule_6_3_4_1
   tags:
     - level2-server
     - level2-workstation
@@ -12,13 +11,13 @@
   ansible.builtin.file:
     path: "{{ prelim_auditd_logfile.stdout | dirname }}"
     state: directory
-    mode: 'g-w,o-rwx'
+    mode: "g-w,o-rwx"
 
 - name: |
     "6.3.4.2 | PATCH | Ensure audit log files mode is configured"
     "6.3.4.3 | PATCH | Ensure audit log files owner is configured"
     "6.3.4.4 | PATCH | Ensure audit log files group owner is configured"
-  when: rhel10cis_rule_6_3_4_2 or rhel10cis_rule_6_3_4_3 or rhel10cis_rule_6_3_4_4
+  when: bozkarcis_rule_6_3_4_2 or bozkarcis_rule_6_3_4_3 or bozkarcis_rule_6_3_4_4
   tags:
     - level2-server
     - level2-workstation
@@ -31,12 +30,12 @@
     - NIST800-53R5_CM-7
   ansible.builtin.file:
     path: "{{ prelim_auditd_logfile.stdout }}"
-    mode: 'o-x,g-wx,o-rwx'
+    mode: "o-x,g-wx,o-rwx"
     owner: root
     group: root
 
 - name: "6.3.4.5 | PATCH | Ensure audit configuration files mode is configured"
-  when: rhel10cis_rule_6_3_4_5
+  when: bozkarcis_rule_6_3_4_5
   tags:
     - level2-server
     - level2-workstation
@@ -46,7 +45,7 @@
     - NIST800-53R5_AU-12
   ansible.builtin.file:
     path: "{{ item.path }}"
-    mode: 'u-x,g-wx,o-rwx'
+    mode: "u-x,g-wx,o-rwx"
   failed_when: discovered_audit_conf_file_list.state not in '[ file, absent ]'
   register: discovered_audit_conf_file_list
   loop: "{{ prelim_auditd_conf_files.files }}"
@@ -54,7 +53,7 @@
     label: "{{ item.path }}"
 
 - name: "6.3.4.6 | PATCH | Ensure audit configuration files owner is configured"
-  when: rhel10cis_rule_6_3_4_6
+  when: bozkarcis_rule_6_3_4_6
   tags:
     - level2-server
     - level2-workstation
@@ -71,7 +70,7 @@
     label: "{{ item.path }}"
 
 - name: "6.3.4.7 | PATCH | Ensure audit configuration files group owner is configured"
-  when: rhel10cis_rule_6_3_4_7
+  when: bozkarcis_rule_6_3_4_7
   tags:
     - level2-server
     - level2-workstation
@@ -88,7 +87,7 @@
     label: "{{ item.path }}"
 
 - name: "6.3.4.8 | PATCH | Ensure audit tools mode is configured"
-  when: rhel10cis_rule_6_3_4_8
+  when: bozkarcis_rule_6_3_4_8
   tags:
     - level2-server
     - level2-workstation
@@ -98,7 +97,7 @@
     - NIST800-53R5_AU-3
   ansible.builtin.file:
     path: "{{ item }}"
-    mode: 'go-w'
+    mode: "go-w"
   register: discovered_auditd_binaries
   failed_when: discovered_auditd_binaries.state not in '[ file, absent ]'
   loop: "{{ auditd_binaries }}"
@@ -106,7 +105,7 @@
     label: "{{ item }}"
 
 - name: "6.3.4.9 | PATCH | Ensure audit tools owner is configured"
-  when: rhel10cis_rule_6_3_4_9
+  when: bozkarcis_rule_6_3_4_9
   tags:
     - level2-server
     - level2-workstation
@@ -124,7 +123,7 @@
     label: "{{ item }}"
 
 - name: "6.3.4.10 | PATCH | Ensure audit tools group owner is configured"
-  when: rhel10cis_rule_6_3_4_10
+  when: bozkarcis_rule_6_3_4_10
   tags:
     - level2-server
     - level2-workstation

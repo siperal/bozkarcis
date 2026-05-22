@@ -1,7 +1,6 @@
 ---
-
 - name: "2.1.1 | PATCH | Ensure autofs services are not in use"
-  when: rhel10cis_rule_2_1_1
+  when: bozkarcis_rule_2_1_1
   tags:
     - level1-server
     - level2-workstation
@@ -13,16 +12,16 @@
   block:
     - name: "2.1.1 | PATCH | Ensure autofs services are not in use | Remove Package"
       when:
-        - not rhel10cis_autofs_services
-        - not rhel10cis_autofs_mask
+        - not bozkarcis_autofs_services
+        - not bozkarcis_autofs_mask
       ansible.builtin.package:
         name: autofs
         state: absent
 
     - name: "2.1.1 | PATCH | Ensure autofs services are not in use | Mask service"
       when:
-        - not rhel10cis_autofs_services
-        - rhel10cis_autofs_mask
+        - not bozkarcis_autofs_services
+        - bozkarcis_autofs_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: autofs.service
@@ -31,7 +30,7 @@
         masked: true
 
 - name: "2.1.2 | PATCH | Ensure avahi daemon services are not in use"
-  when: rhel10cis_rule_2_1_2
+  when: bozkarcis_rule_2_1_2
   tags:
     - level1-server
     - level2-workstation
@@ -43,8 +42,8 @@
   block:
     - name: "2.1.2 | PATCH | Ensure avahi daemon services are not in use | Remove package"
       when:
-        - not rhel10cis_avahi_server
-        - not rhel10cis_avahi_mask
+        - not bozkarcis_avahi_server
+        - not bozkarcis_avahi_mask
       ansible.builtin.package:
         name:
           - avahi-autoipd
@@ -53,8 +52,8 @@
 
     - name: "2.1.2 | PATCH | Ensure avahi daemon services are not in use | Mask service"
       when:
-        - not rhel10cis_avahi_server
-        - rhel10cis_avahi_mask
+        - not bozkarcis_avahi_server
+        - bozkarcis_avahi_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -66,7 +65,7 @@
         - avahi-daemon.service
 
 - name: "2.1.3 | PATCH | Ensure cockpit web services are not in use"
-  when: rhel10cis_rule_2_1_3
+  when: bozkarcis_rule_2_1_3
   tags:
     - level2-server
     - level2-workstation
@@ -78,16 +77,16 @@
   block:
     - name: "2.1.3 | PATCH | Ensure cockpit web services are not in use | Remove package"
       when:
-        - not rhel10cis_cockpit_server
-        - not rhel10cis_cockpit_mask
+        - not bozkarcis_cockpit_server
+        - not bozkarcis_cockpit_mask
       ansible.builtin.package:
         name: cockpit-ws
         state: absent
 
     - name: "2.1.3 | PATCH | Ensure cockpit web services are not in use | Mask service"
       when:
-        - not rhel10cis_cockpit_server
-        - rhel10cis_cockpit_mask
+        - not bozkarcis_cockpit_server
+        - bozkarcis_cockpit_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -99,7 +98,7 @@
         - cockpit.socket
 
 - name: "2.1.4 | PATCH | Ensure dhcp server services are not in use"
-  when: rhel10cis_rule_2_1_4
+  when: bozkarcis_rule_2_1_4
   tags:
     - level1-server
     - level1-workstation
@@ -111,16 +110,16 @@
   block:
     - name: "2.1.4 | PATCH | Ensure dhcp server services are not in use | Remove package"
       when:
-        - not rhel10cis_dhcp_server
-        - not rhel10cis_dhcp_mask
+        - not bozkarcis_dhcp_server
+        - not bozkarcis_dhcp_mask
       ansible.builtin.package:
         name: kea
         state: absent
 
     - name: "2.1.4 | PATCH | Ensure dhcp server services are not in use | Mask service"
       when:
-        - not rhel10cis_dhcp_server
-        - rhel10cis_dhcp_mask
+        - not bozkarcis_dhcp_server
+        - bozkarcis_dhcp_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -133,7 +132,7 @@
         - kea-dhcp6.service
 
 - name: "2.1.5 | PATCH | Ensure dns server services are not in use"
-  when: rhel10cis_rule_2_1_5
+  when: bozkarcis_rule_2_1_5
   tags:
     - level1-server
     - level1-workstation
@@ -145,16 +144,16 @@
   block:
     - name: "2.1.5 | PATCH | Ensure dns server services are not in use | Remove package"
       when:
-        - not rhel10cis_dns_server
-        - not rhel10cis_dns_mask
+        - not bozkarcis_dns_server
+        - not bozkarcis_dns_mask
       ansible.builtin.package:
         name: bind
         state: absent
 
     - name: "2.1.5 | PATCH | Ensure dns server services are not in use | Mask service"
       when:
-        - not rhel10cis_dns_server
-        - rhel10cis_dns_mask
+        - not bozkarcis_dns_server
+        - bozkarcis_dns_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: named.service
@@ -163,7 +162,7 @@
         masked: true
 
 - name: "2.1.6 | PATCH | Ensure dnsmasq services are not in use"
-  when: rhel10cis_rule_2_1_6
+  when: bozkarcis_rule_2_1_6
   tags:
     - level1-server
     - level1-workstation
@@ -175,16 +174,16 @@
   block:
     - name: "2.1.6 | PATCH | Ensure dnsmasq services are not in use | Remove package"
       when:
-        - not rhel10cis_dnsmasq_server
-        - not rhel10cis_dnsmasq_mask
+        - not bozkarcis_dnsmasq_server
+        - not bozkarcis_dnsmasq_mask
       ansible.builtin.package:
         name: dnsmasq
         state: absent
 
     - name: "2.1.6 | PATCH | Ensure dnsmasq services are not in use | Mask service"
       when:
-        - not rhel10cis_dnsmasq_server
-        - rhel10cis_dnsmasq_mask
+        - not bozkarcis_dnsmasq_server
+        - bozkarcis_dnsmasq_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: dnsmasq.service
@@ -193,7 +192,7 @@
         masked: true
 
 - name: "2.1.7 | PATCH | Ensure ftp server services are not in use"
-  when: rhel10cis_rule_2_1_7
+  when: bozkarcis_rule_2_1_7
   tags:
     - level1-server
     - level1-workstation
@@ -206,16 +205,16 @@
   block:
     - name: "2.1.7 | PATCH | Ensure ftp server services are not in use | Remove package"
       when:
-        - not rhel10cis_ftp_server
-        - not rhel10cis_ftp_mask
+        - not bozkarcis_ftp_server
+        - not bozkarcis_ftp_mask
       ansible.builtin.package:
         name: vsftpd
         state: absent
 
     - name: "2.1.7 | PATCH | Ensure ftp server services are not in use | Mask service"
       when:
-        - not rhel10cis_ftp_server
-        - rhel10cis_ftp_mask
+        - not bozkarcis_ftp_server
+        - bozkarcis_ftp_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: vsftpd.service
@@ -224,7 +223,7 @@
         masked: true
 
 - name: "2.1.8 | PATCH | Ensure message access server services are not in use"
-  when: rhel10cis_rule_2_1_8
+  when: bozkarcis_rule_2_1_8
   tags:
     - level1-server
     - level1-workstation
@@ -238,8 +237,8 @@
   block:
     - name: "2.1.8 | PATCH | Ensure message access server services are not in use | Remove package"
       when:
-        - not rhel10cis_message_server
-        - not rhel10cis_message_mask
+        - not bozkarcis_message_server
+        - not bozkarcis_message_mask
       ansible.builtin.package:
         name:
           - dovecot
@@ -248,8 +247,8 @@
 
     - name: "2.1.8 | PATCH | Ensure message access server services are not in use | Mask service"
       when:
-        - not rhel10cis_message_server
-        - rhel10cis_message_mask
+        - not bozkarcis_message_server
+        - bozkarcis_message_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -262,7 +261,7 @@
         - "cyrus-imapd.service"
 
 - name: "2.1.9 | PATCH | Ensure network file system services are not in use"
-  when: rhel10cis_rule_2_1_9
+  when: bozkarcis_rule_2_1_9
   tags:
     - level1-server
     - level1-workstation
@@ -276,16 +275,16 @@
   block:
     - name: "2.1.9 | PATCH | Ensure network file system services are not in use | Remove package"
       when:
-        - not rhel10cis_nfs_server
-        - not rhel10cis_nfs_mask
+        - not bozkarcis_nfs_server
+        - not bozkarcis_nfs_mask
       ansible.builtin.package:
         name: nfs-utils
         state: absent
 
     - name: "2.1.9 | PATCH | Ensure network file system services are not in use | Mask service"
       when:
-        - not rhel10cis_nfs_server
-        - rhel10cis_nfs_mask
+        - not bozkarcis_nfs_server
+        - bozkarcis_nfs_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: nfs-server.service
@@ -294,7 +293,7 @@
         masked: true
 
 - name: "2.1.10 | PATCH | Ensure print server services are not in use"
-  when: rhel10cis_rule_2_1_10
+  when: bozkarcis_rule_2_1_10
   tags:
     - level1-server
     - automated
@@ -305,16 +304,16 @@
   block:
     - name: "2.1.10 | PATCH | Ensure print server services are not in use | Remove package"
       when:
-        - not rhel10cis_print_server
-        - not rhel10cis_print_mask
+        - not bozkarcis_print_server
+        - not bozkarcis_print_mask
       ansible.builtin.package:
         name: cups
         state: absent
 
     - name: "2.1.10 | PATCH | Ensure print server services are not in use | Mask service"
       when:
-        - not rhel10cis_print_server
-        - rhel10cis_print_mask
+        - not bozkarcis_print_server
+        - bozkarcis_print_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -326,7 +325,7 @@
         - "cups.service"
 
 - name: "2.1.11 | PATCH | Ensure rpcbind services are not in use"
-  when: rhel10cis_rule_2_1_11
+  when: bozkarcis_rule_2_1_11
   tags:
     - level1-server
     - automated
@@ -337,16 +336,16 @@
   block:
     - name: "2.1.11 | PATCH | Ensure rpcbind services are not in use | Remove package"
       when:
-        - not rhel10cis_rpc_server
-        - not rhel10cis_rpc_mask
+        - not bozkarcis_rpc_server
+        - not bozkarcis_rpc_mask
       ansible.builtin.package:
         name: rpcbind
         state: absent
 
     - name: "2.1.11 | PATCH | Ensure rpcbind services are not in use | Mask service"
       when:
-        - not rhel10cis_rpc_server
-        - rhel10cis_rpc_mask
+        - not bozkarcis_rpc_server
+        - bozkarcis_rpc_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -358,7 +357,7 @@
         - "rpcbind.service"
 
 - name: "2.1.12 | PATCH | Ensure rsync services are not in use"
-  when: rhel10cis_rule_2_1_12
+  when: bozkarcis_rule_2_1_12
   tags:
     - level1-server
     - level1-workstation
@@ -371,16 +370,16 @@
   block:
     - name: "2.1.12 | PATCH | Ensure rsync services are not in use | Remove package"
       when:
-        - not rhel10cis_rsync_server
-        - not rhel10cis_rsync_mask
+        - not bozkarcis_rsync_server
+        - not bozkarcis_rsync_mask
       ansible.builtin.package:
         name: rsync-daemon
         state: absent
 
     - name: "2.1.12 | PATCH | Ensure rsync services are not in use | Mask service"
       when:
-        - not rhel10cis_rsync_server
-        - rhel10cis_rsync_mask
+        - not bozkarcis_rsync_server
+        - bozkarcis_rsync_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -392,7 +391,7 @@
         - "rsyncd.service"
 
 - name: "2.1.13 | PATCH | Ensure samba file server services are not in use"
-  when: rhel10cis_rule_2_1_13
+  when: bozkarcis_rule_2_1_13
   tags:
     - level1-server
     - level1-workstation
@@ -405,16 +404,16 @@
   block:
     - name: "2.1.13 | PATCH | Ensure samba file server services are not in use | Remove package"
       when:
-        - not rhel10cis_samba_server
-        - not rhel10cis_samba_mask
+        - not bozkarcis_samba_server
+        - not bozkarcis_samba_mask
       ansible.builtin.package:
         name: samba
         state: absent
 
     - name: "2.1.13 | PATCH | Ensure samba file server services are not in use | Mask service"
       when:
-        - not rhel10cis_samba_server
-        - rhel10cis_samba_mask
+        - not bozkarcis_samba_server
+        - bozkarcis_samba_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: smb.service
@@ -425,7 +424,7 @@
 - name: "2.1.14 | PATCH | Ensure snmp services are not in use"
   when:
     - "'net-snmp' in ansible_facts.packages"
-    - rhel10cis_rule_2_1_14
+    - bozkarcis_rule_2_1_14
   tags:
     - level1-server
     - level1-workstation
@@ -437,16 +436,16 @@
   block:
     - name: "2.1.14 | PATCH | Ensure snmp services are not in use | Remove package"
       when:
-        - not rhel10cis_snmp_server
-        - not rhel10cis_snmp_mask
+        - not bozkarcis_snmp_server
+        - not bozkarcis_snmp_mask
       ansible.builtin.package:
         name: net-snmp
         state: absent
 
     - name: "2.1.14 | PATCH | Ensure snmp services are not in use | Mask service"
       when:
-        - not rhel10cis_snmp_server
-        - rhel10cis_snmp_mask
+        - not bozkarcis_snmp_server
+        - bozkarcis_snmp_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: snmpd.service
@@ -457,7 +456,7 @@
 - name: "2.1.15 | PATCH | Ensure telnet server services are not in use"
   when:
     - "'telnet-server' in ansible_facts.packages"
-    - rhel10cis_rule_2_1_15
+    - bozkarcis_rule_2_1_15
   tags:
     - level1-server
     - level1-workstation
@@ -470,16 +469,16 @@
   block:
     - name: "2.1.15 | PATCH | Ensure telnet server services are not in use | Remove package"
       when:
-        - not rhel10cis_telnet_server
-        - not rhel10cis_telnet_mask
+        - not bozkarcis_telnet_server
+        - not bozkarcis_telnet_mask
       ansible.builtin.package:
         name: telnet-server
         state: absent
 
     - name: "2.1.15 | PATCH | Ensure telnet server services are not in use | Mask service"
       when:
-        - not rhel10cis_telnet_server
-        - rhel10cis_telnet_mask
+        - not bozkarcis_telnet_server
+        - bozkarcis_telnet_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: telnet.socket
@@ -490,7 +489,7 @@
 - name: "2.1.16 | PATCH | Ensure tftp server services are not in use"
   when:
     - "'tftp-server' in ansible_facts.packages"
-    - rhel10cis_rule_2_1_16
+    - bozkarcis_rule_2_1_16
   tags:
     - level1-server
     - level1-workstation
@@ -502,16 +501,16 @@
   block:
     - name: "2.1.16 | PATCH | Ensure tftp server services are not in use | Remove package"
       when:
-        - not rhel10cis_tftp_server
-        - not rhel10cis_tftp_mask
+        - not bozkarcis_tftp_server
+        - not bozkarcis_tftp_mask
       ansible.builtin.package:
         name: tftp-server
         state: absent
 
     - name: "2.1.16 | PATCH | Ensure tftp server services are not in use | Mask service"
       when:
-        - not rhel10cis_tftp_server
-        - rhel10cis_tftp_mask
+        - not bozkarcis_tftp_server
+        - bozkarcis_tftp_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: "{{ item }}"
@@ -523,7 +522,7 @@
         - "tftp.service"
 
 - name: "2.1.17 | PATCH | Ensure web proxy server services are not in use"
-  when: rhel10cis_rule_2_1_17
+  when: bozkarcis_rule_2_1_17
   tags:
     - level1-server
     - level1-workstation
@@ -536,16 +535,16 @@
   block:
     - name: "2.1.17 | PATCH | Ensure web proxy server services are not in use | Remove package"
       when:
-        - not rhel10cis_squid_server
-        - not rhel10cis_squid_mask
+        - not bozkarcis_squid_server
+        - not bozkarcis_squid_mask
       ansible.builtin.package:
         name: squid
         state: absent
 
     - name: "2.1.17 | PATCH | Ensure web proxy server services are not in use | Mask service"
       when:
-        - not rhel10cis_squid_server
-        - rhel10cis_squid_mask
+        - not bozkarcis_squid_server
+        - bozkarcis_squid_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: squid.service
@@ -554,7 +553,7 @@
         masked: true
 
 - name: "2.1.18 | PATCH | Ensure web server services are not in use"
-  when: rhel10cis_rule_2_1_18
+  when: bozkarcis_rule_2_1_18
   tags:
     - level1-server
     - level1-workstation
@@ -568,24 +567,24 @@
   block:
     - name: "2.1.18 | PATCH | Ensure web server services are not in use | Remove httpd server"
       when:
-        - not rhel10cis_httpd_server
-        - not rhel10cis_httpd_mask
+        - not bozkarcis_httpd_server
+        - not bozkarcis_httpd_mask
       ansible.builtin.package:
         name: httpd
         state: absent
 
     - name: "2.1.18 | PATCH | Ensure web server services are not in use | Remove nginx server"
       when:
-        - not rhel10cis_nginx_server
-        - not rhel10cis_nginx_mask
+        - not bozkarcis_nginx_server
+        - not bozkarcis_nginx_mask
       ansible.builtin.package:
         name: nginx
         state: absent
 
     - name: "2.1.18 | PATCH | Ensure web server services are not in use | Mask httpd service"
       when:
-        - not rhel10cis_httpd_server
-        - rhel10cis_httpd_mask
+        - not bozkarcis_httpd_server
+        - bozkarcis_httpd_mask
       notify: Systemd daemon reload
       ansible.builtin.systemd:
         name: httpd.service
@@ -595,8 +594,8 @@
 
     - name: "2.1.18 | PATCH | Ensure web server services are not in use | Mask nginx service"
       when:
-        - not rhel10cis_nginx_server
-        - rhel10cis_nginx_mask
+        - not bozkarcis_nginx_server
+        - bozkarcis_nginx_mask
         - "'nginx' in ansible_facts.packages"
       notify: Systemd daemon reload
       ansible.builtin.systemd:
@@ -607,7 +606,7 @@
 
 - name: "2.1.19 | PATCH | Ensure GNOME Display Manager is removed"
   when:
-    - rhel10cis_rule_2_1_19
+    - bozkarcis_rule_2_1_19
     - not rhel10_desktop_required
   tags:
     - level2-server
@@ -623,8 +622,8 @@
 
 - name: "2.1.20 | PATCH | Ensure X window server services are not in use"
   when:
-    - not rhel10cis_xwindow_server
-    - rhel10cis_rule_2_1_20
+    - not bozkarcis_xwindow_server
+    - bozkarcis_rule_2_1_20
   tags:
     - level1-server
     - level1-workstation
@@ -639,9 +638,9 @@
 
 - name: "2.1.21 | PATCH | Ensure mail transfer agents are configured for local-only mode"
   when:
-    - not rhel10cis_is_mail_server
+    - not bozkarcis_is_mail_server
     - "'postfix' in ansible_facts.packages"
-    - rhel10cis_rule_2_1_21
+    - bozkarcis_rule_2_1_21
   tags:
     - level1-server
     - level1-workstation
@@ -657,7 +656,7 @@
     line: "inet_interfaces = loopback-only"
 
 - name: "2.1.22 | AUDIT | Ensure only approved services are listening on a network interface"
-  when: rhel10cis_rule_2_1_22
+  when: bozkarcis_rule_2_1_22
   tags:
     - level1-server
     - level1-workstation

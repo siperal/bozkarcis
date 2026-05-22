@@ -1,11 +1,12 @@
 ---
-# tasks file for RHEL10-CIS
+# tasks file for BOZKARCIS
 
 - name: "Check OS version and family"
   when: os_check
   tags: always
   ansible.builtin.assert:
-    that: (ansible_facts.distribution != 'CentOS' and ansible_facts.os_family == 'RedHat' or ansible_facts.os_family == "Rocky") and ansible_facts.distribution_major_version
+    that:
+      (ansible_facts.distribution != 'CentOS' and ansible_facts.os_family == 'RedHat' or ansible_facts.os_family == "Rocky") and ansible_facts.distribution_major_version
       is version_compare('10', '==')
     fail_msg: "This role can only be run against Supported OSs. {{ ansible_facts.distribution }} {{ ansible_facts.distribution_major_version }} is not supported."
     success_msg: "This role is running against a supported OS {{ ansible_facts.distribution }} {{ ansible_facts.distribution_major_version }}"
@@ -38,35 +39,35 @@
 
 - name: "Check crypto-policy input"
   ansible.builtin.assert:
-    that: rhel10cis_crypto_policy in rhel10cis_allowed_crypto_policies
+    that: bozkarcis_crypto_policy in bozkarcis_allowed_crypto_policies
     fail_msg: "Crypto policy is not a permitted version"
     success_msg: "Crypto policy is a permitted version"
 
-- name: "Check rhel10cis_bootloader_password variable has been changed"
+- name: "Check bozkarcis_bootloader_password variable has been changed"
   when:
-    - rhel10cis_set_boot_pass
-    - rhel10cis_rule_1_4_1
+    - bozkarcis_set_boot_pass
+    - bozkarcis_rule_1_4_1
   tags: always
   ansible.builtin.assert:
-    that: rhel10cis_bootloader_password_hash != 'grub.pbkdf2.sha512.changethispassword' or (rhel10cis_bootloader_salt != '' and rhel10cis_bootloader_password != 'password') # pragma: allowlist secret
-    msg: "This role will not be able to run single user password commands as rhel10cis_bootloader_password or rhel10cis_bootloader_password_hash variable has not been set correctly"
+    that: bozkarcis_bootloader_password_hash != 'grub.pbkdf2.sha512.changethispassword' or (bozkarcis_bootloader_salt != '' and bozkarcis_bootloader_password != 'password') # pragma: allowlist secret
+    msg: "This role will not be able to run single user password commands as bozkarcis_bootloader_password or bozkarcis_bootloader_password_hash variable has not been set correctly"
 
 - name: "Check crypto-policy module input"
   when:
-    - rhel10cis_rule_1_6_1
-    - rhel10cis_crypto_policy_module | length > 0
+    - bozkarcis_rule_1_6_1
+    - bozkarcis_crypto_policy_module | length > 0
   tags:
     - rule_1.6.1
     - crypto
     - NIST800-53R5_SC-6
   ansible.builtin.assert:
-    that: rhel10cis_additional_crypto_policy_module in rhel10cis_allowed_crypto_policies_modules
+    that: bozkarcis_additional_crypto_policy_module in bozkarcis_allowed_crypto_policies_modules
     fail_msg: "Crypto policy module is not a permitted version"
     success_msg: "Crypto policy module is a permitted version"
 
 - name: "Check password set for {{ ansible_env.SUDO_USER }}"
   when:
-    - rhel10cis_rule_5_2_4
+    - bozkarcis_rule_5_2_4
     - ansible_env.SUDO_USER is defined
     - not system_is_ec2
   tags:
@@ -74,7 +75,7 @@
     - rule_5.2.4
     - level2-server
   vars:
-    sudo_password_rule: rhel10cis_rule_5_2_4 # pragma: allowlist secret
+    sudo_password_rule: bozkarcis_rule_5_2_4 # pragma: allowlist secret
   block:
     - name: "Check password set for {{ ansible_env.SUDO_USER }} | password state" # noqa name[template]
       ansible.builtin.shell: "(grep {{ ansible_env.SUDO_USER }} /etc/shadow || echo 'not found:not found') | awk -F: '{print $2}'"
@@ -101,21 +102,21 @@
 
         - name: "Check account is not locked for {{ ansible_env.SUDO_USER }} | Assert local account not locked" # noqa name[template]
           ansible.builtin.assert:
-            that: (not prelim_ansible_user_password_set.stdout.startswith("!")) or (ansible_env.SUDO_USER in rhel10cis_sudoers_exclude_nopasswd_list)
+            that: (not prelim_ansible_user_password_set.stdout.startswith("!")) or (ansible_env.SUDO_USER in bozkarcis_sudoers_exclude_nopasswd_list)
             fail_msg: "You have {{ sudo_password_rule }} enabled but the user = {{ ansible_env.SUDO_USER }} is locked - It can break access"
             success_msg: "The local account {{ ansible_env.SUDO_USER }} is not locked or included in the exception list for rule 5.2.4"
 
 - name: "Authselect discoveries"
-  when: rhel10cis_allow_authselect_updates
+  when: bozkarcis_allow_authselect_updates
   tags: always
   block:
     - name: "Authselect discoveries | Ensure default name updated"
       ansible.builtin.assert:
-        that: rhel10cis_authselect_custom_profile_name != 'cis_example_profile'
+        that: bozkarcis_authselect_custom_profile_name != 'cis_example_profile'
         fail_msg: "You still have the default name for your authselect profile"
 
     - name: "Authselect discoveries | Check custom profile exist and get settings"
-      ansible.builtin.command: "authselect list-features custom/{{ rhel10cis_authselect_custom_profile_name }}"
+      ansible.builtin.command: "authselect list-features custom/{{ bozkarcis_authselect_custom_profile_name }}"
       changed_when: false
       failed_when: prelim_authselect_profile_exists.rc not in [ 0, 1, 2 ]
       register: prelim_authselect_profile_exists
@@ -126,7 +127,7 @@
       register: prelim_authselect_current_profile
 
 - name: "Ensure root password is set or locked"
-  when: rhel10cis_rule_5_4_2_4
+  when: bozkarcis_rule_5_4_2_4
   tags:
     - level1-server
     - level1-workstation
@@ -166,37 +167,37 @@
     file: prelim.yml
 
 - name: "Run Section 1 tasks"
-  when: rhel10cis_section1
+  when: bozkarcis_section1
   ansible.builtin.import_tasks:
     file: section_1/main.yml
 
 - name: "Run Section 2 tasks"
-  when: rhel10cis_section2
+  when: bozkarcis_section2
   ansible.builtin.import_tasks:
     file: section_2/main.yml
 
 - name: "Run Section 3 tasks"
-  when: rhel10cis_section3
+  when: bozkarcis_section3
   ansible.builtin.import_tasks:
     file: section_3/main.yml
 
 - name: "Run Section 4 tasks"
-  when: rhel10cis_section4
+  when: bozkarcis_section4
   ansible.builtin.import_tasks:
     file: section_4/main.yml
 
 - name: "Run Section 5 tasks"
-  when: rhel10cis_section5
+  when: bozkarcis_section5
   ansible.builtin.import_tasks:
     file: section_5/main.yml
 
 - name: "Run Section 6 tasks"
-  when: rhel10cis_section6
+  when: bozkarcis_section6
   ansible.builtin.import_tasks:
     file: section_6/main.yml
 
 - name: "Run Section 7 tasks"
-  when: rhel10cis_section7
+  when: bozkarcis_section7
   ansible.builtin.import_tasks:
     file: section_7/main.yml
 
@@ -234,7 +235,7 @@
         state: directory
         owner: root
         group: root
-        mode: 'u=rwx,go=rx'
+        mode: "u=rwx,go=rx"
 
     - name: Create ansible facts file and levels applied if audit facts not present
       ansible.builtin.template:
@@ -242,7 +243,7 @@
         dest: "{{ ansible_facts_path }}/compliance_facts.fact"
         owner: root
         group: root
-        mode: 'u-x,go=r'
+        mode: "u-x,go=r"
 
 - name: Fetch audit files
   when:

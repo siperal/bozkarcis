@@ -1,8 +1,7 @@
 ---
-
 - name: "1.1.2.6.1 | PATCH | Ensure separate partition exists for /var/log"
   when:
-    - rhel10cis_rule_1_1_2_6_1
+    - bozkarcis_rule_1_1_2_6_1
     - required_mount not in prelim_mount_names
   tags:
     - level2-server
@@ -13,8 +12,8 @@
     - NIST800-53R5_CM-6
     - NIST800-53R5_CM-7
   vars:
-    warn_control_id: '1.1.2.6.1'
-    required_mount: '/var/log'
+    warn_control_id: "1.1.2.6.1"
+    required_mount: "/var/log"
   block:
     - name: "1.1.2.6.1 | AUDIT | Ensure separate partition exists for /var/log | check for mount"
       ansible.builtin.command: findmnt -kn "{{ required_mount }}"
@@ -35,7 +34,7 @@
 - name: "1.1.2.6.2 | PATCH | Ensure nodev option set on /var/log partition"
   when:
     - prelim_mount_point_fs_and_options[mount_point] is defined
-    - rhel10cis_rule_1_1_2_6_2
+    - bozkarcis_rule_1_1_2_6_2
   tags:
     - level1-server
     - level1-workstation
@@ -59,7 +58,7 @@
 - name: "1.1.2.6.3 | PATCH | Ensure nosuid option set on /var/log partition"
   when:
     - prelim_mount_point_fs_and_options[mount_point] is defined
-    - rhel10cis_rule_1_1_2_6_3
+    - bozkarcis_rule_1_1_2_6_3
   tags:
     - level1-server
     - level1-workstation
@@ -80,7 +79,7 @@
 - name: "1.1.2.6.4 | PATCH | Ensure noexec option set on /var/log partition"
   when:
     - prelim_mount_point_fs_and_options[mount_point] is defined
-    - rhel10cis_rule_1_1_2_6_4
+    - bozkarcis_rule_1_1_2_6_4
   tags:
     - level1-server
     - level1-workstation

@@ -1,9 +1,8 @@
 ---
-
 - name: "4.1.1 | PATCH | Ensure firewalld is installed"
   when:
-    - rhel10cis_rule_4_1_1
-    - rhel10cis_firewall == 'firewalld'
+    - bozkarcis_rule_4_1_1
+    - bozkarcis_firewall == 'firewalld'
   tags:
     - level1-server
     - level1-workstation
@@ -16,7 +15,7 @@
     state: present
 
 - name: "4.1.2 | PATCH | Ensure firewalld backend is configured"
-  when: rhel10cis_rule_4_1_2
+  when: bozkarcis_rule_4_1_2
   tags:
     - level1-server
     - level1-workstation
@@ -30,7 +29,7 @@
     line: FirewallBackend=nftables
 
 - name: "4.1.3 | PATCH | Ensure firewalld.service is configured"
-  when: rhel10cis_rule_4_1_3
+  when: bozkarcis_rule_4_1_3
   tags:
     - level1-server
     - level1-workstation
@@ -44,7 +43,7 @@
     enabled: true
 
 - name: "4.1.4 | PATCH | Ensure firewalld active zone target is configured"
-  when: rhel10cis_rule_4_1_4
+  when: bozkarcis_rule_4_1_4
   tags:
     - level1-server
     - level1-workstation
@@ -53,11 +52,11 @@
     - rule_4.1.4
     - NIST800-53R5_NA
   vars:
-    warn_control_id: '4.1.4'
+    warn_control_id: "4.1.4"
   block:
     - name: "4.1.4 | PATCH | Ensure firewalld active zone target is configured | Ensure active zone is set"
       ansible.posix.firewalld:
-        zone: "{{ rhel10cis_active_firewall_zone }}"
+        zone: "{{ bozkarcis_active_firewall_zone }}"
         permanent: true
         state: present
       notify: Reload firewalld
@@ -70,40 +69,40 @@
       register: discovered_active_firewall_zone_settings
 
     - name: "4.1.4 | PATCH | Ensure firewalld active zone target is configured | Ensure zone settings are permanent"
-      when: rhel10cis_disruption_high
+      when: bozkarcis_disruption_high
       ansible.posix.firewalld:
-        zone: "{{ rhel10cis_active_firewall_zone }}"
+        zone: "{{ bozkarcis_active_firewall_zone }}"
         permanent: true
         state: enabled
       notify: Reload firewalld
 
     - name: "4.1.4 | PATCH | Ensure firewalld active zone target is configured | set zone if required"
       when:
-        - rhel10cis_disruption_high
+        - bozkarcis_disruption_high
         - "'accept' in discovered_active_firewall_zone_settings.stdout"
       ansible.posix.firewalld:
-        zone: "{{ rhel10cis_active_firewall_zone }}"
+        zone: "{{ bozkarcis_active_firewall_zone }}"
         permanent: true
         state: enabled
-        target: "{{ rhel10cis_firewalld_target }}"
+        target: "{{ bozkarcis_firewalld_target }}"
       notify: Reload firewalld
 
     - name: "4.1.4 | AUDIT | Ensure firewalld active zone target is configured | Absent"
       when:
-        - not rhel10cis_disruption_high
+        - not bozkarcis_disruption_high
         - "'accept' in discovered_active_firewall_zone_settings.stdout"
       ansible.builtin.debug:
         msg: "Warning!! The active firewall zone need investigation to match requirements"
 
     - name: "4.1.4 | AUDIT | Ensure firewalld active zone target is configured | Present"
       when:
-        - not rhel10cis_disruption_high
+        - not bozkarcis_disruption_high
         - "'accept' in discovered_active_firewall_zone_settings.stdout"
       ansible.builtin.import_tasks:
         file: warning_facts.yml
 
 - name: "4.1.5 | PATCH | Ensure firewalld loopback traffic is configured"
-  when: rhel10cis_rule_4_1_5
+  when: bozkarcis_rule_4_1_5
   tags:
     - level1-server
     - level1-workstation
@@ -138,7 +137,7 @@
       notify: Reload firewalld
 
 - name: "4.1.6 | PATCH | Ensure firewalld loopback source address traffic is configured"
-  when: rhel10cis_rule_4_1_6
+  when: bozkarcis_rule_4_1_6
   tags:
     - level1-server
     - level1-workstation
@@ -148,7 +147,7 @@
     - NIST800-53R5_NA
   ansible.posix.firewalld:
     rich_rule: "{{ item }}"
-    zone: "{{ rhel10cis_active_firewall_zone }}"
+    zone: "{{ bozkarcis_active_firewall_zone }}"
     permanent: true
     immediate: true
     state: enabled
@@ -158,7 +157,7 @@
   notify: Reload firewalld
 
 - name: "4.1.7 | AUDIT | Ensure firewalld services and ports are configured"
-  when: rhel10cis_rule_4_1_7
+  when: bozkarcis_rule_4_1_7
   tags:
     - level1-server
     - level1-workstation

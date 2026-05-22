@@ -1,10 +1,9 @@
 ---
-
 - name: "3.3.2.1 | PATCH | Ensure net.ipv6.conf.all.forwarding is configured"
   when:
-    - not rhel10cis_is_router
-    - rhel10cis_ipv6_required
-    - rhel10cis_rule_3_3_2_1
+    - not bozkarcis_is_router
+    - bozkarcis_ipv6_required
+    - bozkarcis_rule_3_3_2_1
   tags:
     - level2-server
     - level1-workstation
@@ -16,8 +15,8 @@
   block:
     - name: "3.3.2.1 | PATCH | Ensure net.ipv6.conf.all.forwarding is configured | Disable IPv6 forwarding | Set Fact"
       ansible.builtin.set_fact:
-        rhel10cis_sysctl_update: true
-        rhel10cis_flush_ipv6_route: true
+        bozkarcis_sysctl_update: true
+        bozkarcis_flush_ipv6_route: true
 
     - name: "3.3.2.1 | PATCH | Ensure net.ipv6.conf.all.forwarding is configured | Disable IPv6 forwarding"
       ansible.builtin.debug:
@@ -25,9 +24,9 @@
 
 - name: "3.3.2.2 | PATCH | Ensure net.ipv6.conf.default.forwarding is configured"
   when:
-    - not rhel10cis_is_router
-    - rhel10cis_ipv6_required
-    - rhel10cis_rule_3_3_2_2
+    - not bozkarcis_is_router
+    - bozkarcis_ipv6_required
+    - bozkarcis_rule_3_3_2_2
   tags:
     - level1-server
     - level1-workstation
@@ -39,8 +38,8 @@
   block:
     - name: "3.3.2.2 | PATCH | Ensure net.ipv6.conf.default.forwarding is configured | Disable IPv6 default forwarding | Set Fact"
       ansible.builtin.set_fact:
-        rhel10cis_sysctl_update: true
-        rhel10cis_flush_ipv6_route: true
+        bozkarcis_sysctl_update: true
+        bozkarcis_flush_ipv6_route: true
 
     - name: "3.3.2.2 | PATCH | Ensure net.ipv6.conf.default.forwarding is configured | Disable IPv6 default forwarding"
       ansible.builtin.debug:
@@ -48,9 +47,9 @@
 
 - name: "3.3.2.3 | PATCH | Ensure net.ipv6.conf.all.accept_redirects is configured"
   when:
-    - not rhel10cis_is_router
-    - rhel10cis_ipv6_required
-    - rhel10cis_rule_3_3_2_3
+    - not bozkarcis_is_router
+    - bozkarcis_ipv6_required
+    - bozkarcis_rule_3_3_2_3
   tags:
     - level1-server
     - level1-workstation
@@ -62,8 +61,8 @@
   block:
     - name: "3.3.2.3 | PATCH | Ensure net.ipv6.conf.all.accept_redirects is configured | Set Fact"
       ansible.builtin.set_fact:
-        rhel10cis_sysctl_update: true
-        rhel10cis_flush_ipv6_route: true
+        bozkarcis_sysctl_update: true
+        bozkarcis_flush_ipv6_route: true
 
     - name: "3.3.2.3 | PATCH | Ensure net.ipv6.conf.all.accept_redirects is configured"
       ansible.builtin.debug:
@@ -71,9 +70,9 @@
 
 - name: "3.3.2.4 | PATCH | Ensure net.ipv6.conf.default.accept_redirects is configured"
   when:
-    - not rhel10cis_is_router
-    - rhel10cis_ipv6_required
-    - rhel10cis_rule_3_3_2_4
+    - not bozkarcis_is_router
+    - bozkarcis_ipv6_required
+    - bozkarcis_rule_3_3_2_4
   tags:
     - level1-server
     - level1-workstation
@@ -85,8 +84,8 @@
   block:
     - name: "3.3.2.4 | PATCH | Ensure net.ipv6.conf.default.accept_redirects is configured | Set Fact"
       ansible.builtin.set_fact:
-        rhel10cis_sysctl_update: true
-        rhel10cis_flush_ipv6_route: true
+        bozkarcis_sysctl_update: true
+        bozkarcis_flush_ipv6_route: true
 
     - name: "3.3.2.4 | PATCH | Ensure net.ipv6.conf.default.accept_redirects is configured"
       ansible.builtin.debug:
@@ -94,8 +93,8 @@
 
 - name: "3.3.2.5 | PATCH | Ensure net.ipv6.conf.all.accept_source_route is configured"
   when:
-    - rhel10cis_ipv6_required
-    - rhel10cis_rule_3_3_2_5
+    - bozkarcis_ipv6_required
+    - bozkarcis_rule_3_3_2_5
   tags:
     - level1-server
     - level1-workstation
@@ -107,8 +106,8 @@
   block:
     - name: "3.3.2.5 | PATCH | Ensure net.ipv6.conf.all.accept_source_route is configured | Set Fact"
       ansible.builtin.set_fact:
-        rhel10cis_sysctl_update: true
-        rhel10cis_flush_ipv6_route: true
+        bozkarcis_sysctl_update: true
+        bozkarcis_flush_ipv6_route: true
 
     - name: "3.3.2.5 | PATCH | Ensure net.ipv6.conf.all.accept_source_route is configured"
       ansible.builtin.debug:
@@ -116,8 +115,8 @@
 
 - name: "3.3.2.6 | PATCH | Ensure net.ipv6.conf.default.accept_source_route is configured"
   when:
-    - rhel10cis_ipv6_required
-    - rhel10cis_rule_3_3_2_6
+    - bozkarcis_ipv6_required
+    - bozkarcis_rule_3_3_2_6
   tags:
     - level1-server
     - level1-workstation
@@ -129,8 +128,8 @@
   block:
     - name: "3.3.2.6 | PATCH | Ensure net.ipv6.conf.default.accept_source_route is configured | Set Fact"
       ansible.builtin.set_fact:
-        rhel10cis_sysctl_update: true
-        rhel10cis_flush_ipv6_route: true
+        bozkarcis_sysctl_update: true
+        bozkarcis_flush_ipv6_route: true
 
     - name: "3.3.2.6 | PATCH | Ensure net.ipv6.conf.default.accept_source_route is configured"
       ansible.builtin.debug:
@@ -138,8 +137,8 @@
 
 - name: "3.3.2.7 | PATCH | Ensure net.ipv6.conf.all.accept_ra is configured"
   when:
-    - rhel10cis_ipv6_required
-    - rhel10cis_rule_3_3_2_7
+    - bozkarcis_ipv6_required
+    - bozkarcis_rule_3_3_2_7
   tags:
     - level1-server
     - level1-workstation
@@ -151,8 +150,8 @@
   block:
     - name: "3.3.2.7 | PATCH | Ensure net.ipv6.conf.all.accept_ra is configured | Set Fact"
       ansible.builtin.set_fact:
-        rhel10cis_sysctl_update: true
-        rhel10cis_flush_ipv6_route: true
+        bozkarcis_sysctl_update: true
+        bozkarcis_flush_ipv6_route: true
 
     - name: "3.3.2.7 | PATCH | Ensure net.ipv6.conf.all.accept_ra is configured"
       ansible.builtin.debug:
@@ -160,8 +159,8 @@
 
 - name: "3.3.2.8 | PATCH | Ensure net.ipv6.conf.default.accept_ra is configured"
   when:
-    - rhel10cis_ipv6_required
-    - rhel10cis_rule_3_3_2_8
+    - bozkarcis_ipv6_required
+    - bozkarcis_rule_3_3_2_8
   tags:
     - level1-server
     - level1-workstation
@@ -173,8 +172,8 @@
   block:
     - name: "3.3.2.8 | PATCH | Ensure net.ipv6.conf.default.accept_ra is configured | Set Fact"
       ansible.builtin.set_fact:
-        rhel10cis_sysctl_update: true
-        rhel10cis_flush_ipv6_route: true
+        bozkarcis_sysctl_update: true
+        bozkarcis_flush_ipv6_route: true
 
     - name: "3.3.2.8 | PATCH | Ensure net.ipv6.conf.default.accept_ra is configured"
       ansible.builtin.debug:

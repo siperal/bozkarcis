@@ -1,12 +1,12 @@
 {{ file_managed_by_ansible }}
 
 # 5.3.3.2.3 Ensure password complexity is configured
-{% if rhel10cis_passwd_complex_option == 'minclass' %}  # pragma: allowlist secret
-minclass = {{ rhel10cis_passwd_minclass }}
+{% if bozkarcis_passwd_complex_option == 'minclass' %}  # pragma: allowlist secret
+minclass = {{ bozkarcis_passwd_minclass }}
 {% endif %}
-{% if rhel10cis_passwd_complex_option == 'credits' %}  # pragma: allowlist secret
-dcredit = {{rhel10cis_passwd_dcredit }}
-ucredit = {{ rhel10cis_passwd_ucredit }}
-ocredit = {{ rhel10cis_passwd_ocredit }}
-lcredit = {{ rhel10cis_passwd_lcredit }}
+{% if bozkarcis_passwd_complex_option == 'credits' %}  # pragma: allowlist secret
+dcredit = {{bozkarcis_passwd_dcredit }}
+ucredit = {{ bozkarcis_passwd_ucredit }}
+ocredit = {{ bozkarcis_passwd_ocredit }}
+lcredit = {{ bozkarcis_passwd_lcredit }}
 {% endif %}

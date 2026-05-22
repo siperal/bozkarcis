@@ -1,7 +1,6 @@
 ---
-
 - name: "7.1.1 | PATCH | Ensure access to /etc/passwd is configured"
-  when: rhel10cis_rule_7_1_1
+  when: bozkarcis_rule_7_1_1
   tags:
     - level1-server
     - level1-workstation
@@ -14,10 +13,10 @@
     path: /etc/passwd
     owner: root
     group: root
-    mode: 'u-x,go-wx'
+    mode: "u-x,go-wx"
 
 - name: "7.1.2 | PATCH | Ensure access to /etc/passwd- is configured"
-  when: rhel10cis_rule_7_1_2
+  when: bozkarcis_rule_7_1_2
   tags:
     - level1-server
     - level1-workstation
@@ -30,12 +29,12 @@
     path: /etc/passwd-
     owner: root
     group: root
-    mode: 'u-x,go-wx'
+    mode: "u-x,go-wx"
   failed_when: discovered_file_exists.state not in '[ file, absent ]'
   register: discovered_file_exists
 
 - name: "7.1.3 | PATCH | Ensure access to /etc/group is configured"
-  when: rhel10cis_rule_7_1_3
+  when: bozkarcis_rule_7_1_3
   tags:
     - level1-server
     - level1-workstation
@@ -48,10 +47,10 @@
     path: /etc/group
     owner: root
     group: root
-    mode: 'u-x,go-wx'
+    mode: "u-x,go-wx"
 
 - name: "7.1.4 | PATCH | Ensure access to /etc/group- is configured"
-  when: rhel10cis_rule_7_1_4
+  when: bozkarcis_rule_7_1_4
   tags:
     - level1-server
     - level1-workstation
@@ -64,12 +63,12 @@
     path: /etc/group-
     owner: root
     group: root
-    mode: 'u-x,go-wx'
+    mode: "u-x,go-wx"
   failed_when: discovered_file_exists.state not in '[ file, absent ]'
   register: discovered_file_exists
 
 - name: "7.1.5 | PATCH | Ensure access to /etc/shadow is configured"
-  when: rhel10cis_rule_7_1_5
+  when: bozkarcis_rule_7_1_5
   tags:
     - level1-server
     - level1-workstation
@@ -82,10 +81,10 @@
     path: /etc/shadow
     owner: root
     group: root
-    mode: 'u-x,g-wx,o-rwx'
+    mode: "u-x,g-wx,o-rwx"
 
 - name: "7.1.6 | PATCH | Ensure access to /etc/shadow- is configured"
-  when: rhel10cis_rule_7_1_6
+  when: bozkarcis_rule_7_1_6
   tags:
     - level1-server
     - level1-workstation
@@ -98,12 +97,12 @@
     path: /etc/shadow-
     owner: root
     group: root
-    mode: 'u-x,g-wx,o-rwx'
+    mode: "u-x,g-wx,o-rwx"
   failed_when: discovered_file_exists.state not in '[ file, absent ]'
   register: discovered_file_exists
 
 - name: "7.1.7 | PATCH | Ensure access to /etc/gshadow is configured"
-  when: rhel10cis_rule_7_1_7
+  when: bozkarcis_rule_7_1_7
   tags:
     - level1-server
     - level1-workstation
@@ -116,10 +115,10 @@
     path: /etc/gshadow
     owner: root
     group: root
-    mode: 'u-x,g-wx,o-rwx'
+    mode: "u-x,g-wx,o-rwx"
 
 - name: "7.1.8 | PATCH | Ensure access to /etc/gshadow- is configured"
-  when: rhel10cis_rule_7_1_8
+  when: bozkarcis_rule_7_1_8
   tags:
     - level1-server
     - level1-workstation
@@ -132,12 +131,12 @@
     path: /etc/gshadow-
     owner: root
     group: root
-    mode: 'u-x,g-wx,o-rwx'
+    mode: "u-x,g-wx,o-rwx"
   failed_when: discovered_file_exists.state not in '[ file, absent ]'
   register: discovered_file_exists
 
 - name: "7.1.9 | PATCH | Ensure access to /etc/shells is configured"
-  when: rhel10cis_rule_7_1_9
+  when: bozkarcis_rule_7_1_9
   tags:
     - level1-server
     - level1-workstation
@@ -150,10 +149,10 @@
     path: /etc/shells
     owner: root
     group: root
-    mode: 'u-x,go-wx'
+    mode: "u-x,go-wx"
 
 - name: "7.1.10 | PATCH | Ensure access to /etc/security/opasswd is configured"
-  when: rhel10cis_rule_7_1_10
+  when: bozkarcis_rule_7_1_10
   tags:
     - level1-server
     - level1-workstation
@@ -166,7 +165,7 @@
     path: "{{ item }}"
     owner: root
     group: root
-    mode: 'u-x,go-rwx'
+    mode: "u-x,go-rwx"
   failed_when: discovered_file_exists.state not in '[ file, absent ]'
   register: discovered_file_exists
   loop:
@@ -174,7 +173,7 @@
     - /etc/security/opasswd.old
 
 - name: "7.1.11 | PATCH | Ensure world writable files and directories are secured"
-  when: rhel10cis_rule_7_1_11
+  when: bozkarcis_rule_7_1_11
   tags:
     - level1-server
     - level1-workstation
@@ -195,10 +194,10 @@
     - name: "7.1.11 | PATCH | Ensure world writable files and directories are secured | Adjust world-writable files if they exist (Configurable)"
       when:
         - discovered_worldwriteable_files.stdout_lines is defined
-        - rhel10cis_no_world_write_adjust
+        - bozkarcis_no_world_write_adjust
       ansible.builtin.file:
         path: "{{ item }}"
-        mode: 'o-w'
+        mode: "o-w"
         state: touch
       loop: "{{ discovered_worldwriteable_files.stdout_lines }}"
 
@@ -210,7 +209,7 @@
       failed_when: false
 
 - name: "7.1.12 | PATCH | Ensure no files or directories without an owner and a group exist"
-  when: rhel10cis_rule_7_1_12
+  when: bozkarcis_rule_7_1_12
   tags:
     - level1-server
     - level1-workstation
@@ -222,7 +221,7 @@
     warn_control_id: "7.1.12"
   block:
     - name: "7.1.12 | AUDIT | Ensure no files or directories without an owner and a group exist | Get list files or directories"
-      ansible.builtin.command: "find {{ item.mount }} -xdev{{ rhel10cis_exclude_unowned_search_path }} \\( -nouser -o -nogroup \\) -not -fstype nfs"
+      ansible.builtin.command: "find {{ item.mount }} -xdev{{ bozkarcis_exclude_unowned_search_path }} \\( -nouser -o -nogroup \\) -not -fstype nfs"
       changed_when: false
       failed_when: false
       check_mode: false
@@ -237,7 +236,7 @@
 
     - name: "7.1.12 | AUDIT | Ensure no files or directories without an owner and a group exist | Alert on unowned files and directories"
       when:
-        - not rhel10cis_ownership_adjust
+        - not bozkarcis_ownership_adjust
         - discovered_unowned_files_flatten | length > 0
       ansible.builtin.debug:
         msg:
@@ -247,24 +246,24 @@
 
     - name: "7.1.12 | PATCH | Ensure no files or directories without an owner and a group exist | Set files/directories to configured owner and group"
       when:
-        - rhel10cis_ownership_adjust
+        - bozkarcis_ownership_adjust
         - discovered_unowned_files_flatten | length > 0
       ansible.builtin.file:
         path: "{{ item }}"
-        owner: "{{ rhel10cis_unowned_owner }}"
-        group: "{{ rhel10cis_ungrouped_group }}"
+        owner: "{{ bozkarcis_unowned_owner }}"
+        group: "{{ bozkarcis_ungrouped_group }}"
       with_items:
         - "{{ discovered_unowned_files_flatten }}"
 
     - name: "7.1.12 | AUDIT | Ensure no files or directories without an owner and a group exist | Warn Count"
       when:
-        - not rhel10cis_ownership_adjust
+        - not bozkarcis_ownership_adjust
         - discovered_unowned_files_flatten | length > 0
       ansible.builtin.import_tasks:
         file: warning_facts.yml
 
 - name: "7.1.13 | AUDIT | Ensure SUID and SGID files are reviewed"
-  when: rhel10cis_rule_7_1_13
+  when: bozkarcis_rule_7_1_13
   tags:
     - level1-server
     - level1-workstation
@@ -298,7 +297,7 @@
     - name: "7.1.13 | AUDIT | Audit SUID executables | Alert SUID executables exist"
       when:
         - discovered_suid_sgid_files_flatten | length > 0
-        - not rhel10cis_suid_sgid_adjust
+        - not bozkarcis_suid_sgid_adjust
       ansible.builtin.debug:
         msg:
           - "Warning!! You have SUID executables"
@@ -307,16 +306,16 @@
 
     - name: "7.1.13 | PATCH | Ensure SUID and SGID files are reviewed | Remove SUID bit"
       when:
-        - rhel10cis_suid_sgid_adjust
+        - bozkarcis_suid_sgid_adjust
         - discovered_suid_sgid_files_flatten | length > 0
       ansible.builtin.file:
         path: "{{ item }}"
-        mode: 'u-s'
+        mode: "u-s"
       loop: "{{ discovered_suid_sgid_files_flatten }}"
 
     - name: "7.1.13 | AUDIT | Audit SUID executables | Warn Count"
       when:
         - discovered_suid_sgid_files_flatten | length > 0
-        - not rhel10cis_suid_sgid_adjust
+        - not bozkarcis_suid_sgid_adjust
       ansible.builtin.import_tasks:
         file: warning_facts.yml

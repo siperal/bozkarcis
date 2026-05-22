@@ -1,6 +1,5 @@
 ---
-
-- name: Apply ansible-lockdown hardening
+- name: Apply Siperal Bozkaros hardening
   hosts: all
   become: true
   roles:

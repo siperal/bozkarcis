@@ -1,10 +1,10 @@
 ---
-# handlers file for RHEL10-CIS
+# handlers file for BOZKARCIS
 
 - name: "Adding options for /tmp"
-  when: not rhel10cis_tmp_svc
+  when: not bozkarcis_tmp_svc
   vars:
-    mount_point: '/tmp'
+    mount_point: "/tmp"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     src: "{{ prelim_mount_point_fs_and_options[mount_point]['src'] }}"
@@ -15,7 +15,7 @@
 
 - name: "Remounting /tmp"
   vars:
-    mount_point: '/tmp'
+    mount_point: "/tmp"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     state: remounted
@@ -23,7 +23,7 @@
 
 - name: "Remounting /tmp systemd"
   vars:
-    mount_point: '/tmp'
+    mount_point: "/tmp"
   ansible.builtin.systemd:
     name: tmp.mount
     state: restarted
@@ -32,7 +32,7 @@
 
 - name: "Adding options for /dev/shm"
   vars:
-    mount_point: '/dev/shm'
+    mount_point: "/dev/shm"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     src: "{{ prelim_mount_point_fs_and_options[mount_point]['src'] }}"
@@ -43,7 +43,7 @@
 
 - name: "Remounting /dev/shm"
   vars:
-    mount_point: '/dev/shm'
+    mount_point: "/dev/shm"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     state: remounted
@@ -51,7 +51,7 @@
 
 - name: "Adding options for /home"
   vars:
-    mount_point: '/home'
+    mount_point: "/home"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     src: "{{ prelim_mount_point_fs_and_options[mount_point]['src'] }}"
@@ -62,7 +62,7 @@
 
 - name: "Remounting /home"
   vars:
-    mount_point: '/home'
+    mount_point: "/home"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     state: remounted
@@ -70,7 +70,7 @@
 
 - name: "Adding options for /var"
   vars:
-    mount_point: '/var'
+    mount_point: "/var"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     src: "{{ prelim_mount_point_fs_and_options[mount_point]['src'] }}"
@@ -81,7 +81,7 @@
 
 - name: "Remounting /var"
   vars:
-    mount_point: '/var'
+    mount_point: "/var"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     state: remounted
@@ -89,7 +89,7 @@
 
 - name: "Adding options for /var/tmp"
   vars:
-    mount_point: '/var/tmp'
+    mount_point: "/var/tmp"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     src: "{{ prelim_mount_point_fs_and_options[mount_point]['src'] }}"
@@ -100,7 +100,7 @@
 
 - name: "Remounting /var/tmp"
   vars:
-    mount_point: '/var/tmp'
+    mount_point: "/var/tmp"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     state: remounted
@@ -108,7 +108,7 @@
 
 - name: "Adding options for /var/log"
   vars:
-    mount_point: '/var/log'
+    mount_point: "/var/log"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     src: "{{ prelim_mount_point_fs_and_options[mount_point]['src'] }}"
@@ -119,7 +119,7 @@
 
 - name: "Remounting /var/log"
   vars:
-    mount_point: '/var/log'
+    mount_point: "/var/log"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     state: remounted
@@ -127,7 +127,7 @@
 
 - name: "Adding options for /var/log/audit"
   vars:
-    mount_point: '/var/log/audit'
+    mount_point: "/var/log/audit"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     src: "{{ prelim_mount_point_fs_and_options[mount_point]['src'] }}"
@@ -138,7 +138,7 @@
 
 - name: "Remounting /var/log/audit"
   vars:
-    mount_point: '/var/log/audit'
+    mount_point: "/var/log/audit"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     state: remounted
@@ -146,7 +146,7 @@
 
 - name: "Remounting /boot/efi"
   vars:
-    mount_point: '/boot/efi'
+    mount_point: "/boot/efi"
   ansible.posix.mount:
     path: "{{ mount_point }}"
     state: remounted
@@ -160,7 +160,7 @@
 
 - name: Sysctl update required
   ansible.builtin.set_fact:
-    rhel10cis_sysctl_update: true
+    bozkarcis_sysctl_update: true
 
 - name: Reload sysctl
   ansible.builtin.command: sysctl --system
@@ -173,41 +173,41 @@
 
 - name: Sysctl flush ipv4 route table
   when:
-    - rhel10cis_flush_ipv4_route
+    - bozkarcis_flush_ipv4_route
     - not system_is_container
   ansible.posix.sysctl:
     name: net.ipv4.route.flush
-    value: '1'
+    value: "1"
     sysctl_set: true
-  ignore_errors: true  # noqa ignore-errors
+  ignore_errors: true # noqa ignore-errors
 
 - name: Selinux relabel
   when:
-    - rhel10cis_selinux_relabel_enabled
+    - bozkarcis_selinux_relabel_enabled
     - ansible_selinux.status == 'disabled'
-    - rhel10cis_disruption_high
+    - bozkarcis_disruption_high
   ansible.builtin.file:
     path: /.autorelabel
   notify: Set reboot required
 
 - name: Sysctl flush ipv6 route table
   when:
-    - rhel10cis_flush_ipv6_route
+    - bozkarcis_flush_ipv6_route
     - not system_is_container
   ansible.posix.sysctl:
     name: net.ipv6.route.flush
-    value: '1'
+    value: "1"
     sysctl_set: true
 
 - name: Update Crypto Policy
   ansible.builtin.set_fact:
-    rhel10cis_full_crypto_policy: "{{ rhel10cis_crypto_policy }}{{ rhel10cis_crypto_policy_module }}{% if rhel10cis_additional_crypto_policy_module | length > 0 %}:{{ rhel10cis_additional_crypto_policy_module }}{% endif %}"
+    bozkarcis_full_crypto_policy: "{{ bozkarcis_crypto_policy }}{{ bozkarcis_crypto_policy_module }}{% if bozkarcis_additional_crypto_policy_module | length > 0 %}:{{ bozkarcis_additional_crypto_policy_module }}{% endif %}"
   notify: Set Crypto Policy
 
 - name: Set Crypto Policy
-  when: prelim_system_wide_crypto_policy.stdout != rhel10cis_full_crypto_policy
+  when: prelim_system_wide_crypto_policy.stdout != bozkarcis_full_crypto_policy
   ansible.builtin.command: |
-    update-crypto-policies --set "{{ rhel10cis_full_crypto_policy }}"
+    update-crypto-policies --set "{{ bozkarcis_full_crypto_policy }}"
   changed_when: true
   notify:
     - Set reboot required
@@ -234,7 +234,7 @@
 
 - name: Grub2cfg
   ansible.builtin.command: "grub2-mkconfig -o /boot/grub2/grub.cfg"
-  ignore_errors: true  # noqa ignore-errors
+  ignore_errors: true # noqa ignore-errors
   changed_when: true
   notify: Set reboot required
 
@@ -254,7 +254,7 @@
     state: restarted
 
 - name: Aide db move
-  ansible.builtin.command: "mv /var/lib/aide/aide.db.new.gz {{ rhel10cis_aide_db_file }}"
+  ansible.builtin.command: "mv /var/lib/aide/aide.db.new.gz {{ bozkarcis_aide_db_file }}"
   changed_when: true
 
 - name: Systemd daemon reload

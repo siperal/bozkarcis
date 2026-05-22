@@ -1,25 +1,25 @@
 {{ file_managed_by_ansible }}
 
 /var/log/rsyslog/*.log {
-    {{ rhel10cis_rsyslog_logrotate_rotated_when }}
-    rotate {{ rhel10cis_rsyslog_logrotate_rotatation_keep }}
-{% if rhel10cis_rsyslog_logrotate_compress %}
+    {{ bozkarcis_rsyslog_logrotate_rotated_when }}
+    rotate {{ bozkarcis_rsyslog_logrotate_rotatation_keep }}
+{% if bozkarcis_rsyslog_logrotate_compress %}
     compress
 {% else %}
     nocompress
 {% endif %}
-{% if rhel10cis_rsyslog_logrotate_missingok %}
+{% if bozkarcis_rsyslog_logrotate_missingok %}
     missingok
 {% else %}
     nomissingok
 {% endif %}
-{% if rhel10cis_rsyslog_logrotate_notifempty %}
+{% if bozkarcis_rsyslog_logrotate_notifempty %}
     notifempty
 {% else %}
     ifempty
 {% endif %}
-{% if rhel10cis_rsyslog_logrotate_create %}
-    create{% if rhel10cis_rsyslog_logrotate_create_opts is defined %} {{ rhel10cis_rsyslog_logrotate_create_opts }}{% endif %}
+{% if bozkarcis_rsyslog_logrotate_create %}
+    create{% if bozkarcis_rsyslog_logrotate_create_opts is defined %} {{ bozkarcis_rsyslog_logrotate_create_opts }}{% endif %}
 {% endif %}
 
     postrotate

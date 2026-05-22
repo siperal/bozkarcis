@@ -2,7 +2,7 @@
 
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
-{% for server in rhel10cis_time_synchronization_servers -%}
+{% for server in bozkarcis_time_synchronization_servers -%}
 server {{ server.name }} {{ server.options }}
 {% endfor %}
 
@@ -11,9 +11,9 @@ driftfile /var/lib/chrony/drift
 
 # Allow the system clock to be stepped in the first three updates
 # if its offset is larger than 1 second.
-makestep {{ rhel10cis_chrony_server_makestep }}
+makestep {{ bozkarcis_chrony_server_makestep }}
 
-{% if rhel10cis_chrony_server_rtcsync %}
+{% if bozkarcis_chrony_server_rtcsync %}
 # Enable kernel synchronization of the real-time clock (RTC).
 rtcsync
 {% endif %}
@@ -23,7 +23,7 @@ rtcsync
 
 # Increase the minimum number of selectable sources required to adjust
 # the system clock.
-minsources {{ rhel10cis_chrony_server_minsources }}
+minsources {{ bozkarcis_chrony_server_minsources }}
 
 # Allow NTP client access from local network.
 #allow 192.168.0.0/16

@@ -8,7 +8,7 @@
 
 - name: POST | Update sysctl
   when:
-    - rhel10cis_sysctl_update
+    - bozkarcis_sysctl_update
     - not system_is_container
     - "'procps-ng' in ansible_facts.packages"
   ansible.builtin.template:
@@ -16,7 +16,7 @@
     dest: "/etc/sysctl.d/{{ item }}"
     owner: root
     group: root
-    mode: 'u-x,go-rwx'
+    mode: "u-x,go-rwx"
   loop:
     - 60-kernel_sysctl.conf
     - 60-disable_ipv6.conf

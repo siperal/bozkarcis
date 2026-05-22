@@ -1,7 +1,6 @@
 ---
-
 - name: "1.5.1 | PATCH | Ensure core file size is configured"
-  when: rhel10cis_rule_1_5_1
+  when: bozkarcis_rule_1_5_1
   tags:
     - level1-server
     - level1-workstation
@@ -38,11 +37,11 @@
         dest: /etc/security/limits.d/60-limits.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Sysctl update required
 
 - name: "1.5.2 | PATCH | Ensure fs.protected_hardlinks is configured"
-  when: rhel10cis_rule_1_5_2
+  when: bozkarcis_rule_1_5_2
   tags:
     - level1-server
     - level1-workstation
@@ -82,11 +81,11 @@
         dest: /etc/sysctl.d/60-fs_sysctl.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Sysctl update required
 
 - name: "1.5.3 | PATCH | Ensure fs.protected_symlinks is configured"
-  when: rhel10cis_rule_1_5_3
+  when: bozkarcis_rule_1_5_3
   tags:
     - level2-server
     - level2-workstation
@@ -126,11 +125,11 @@
         dest: /etc/sysctl.d/60-fs_sysctl.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Sysctl update required
 
 - name: "1.5.4 | PATCH | Ensure fs.suid_dumpable is configured"
-  when: rhel10cis_rule_1_5_4
+  when: bozkarcis_rule_1_5_4
   tags:
     - level1-server
     - level1-workstation
@@ -170,11 +169,11 @@
         dest: /etc/sysctl.d/60-fs_sysctl.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Sysctl update required
 
 - name: "1.5.5 | PATCH | Ensure kernel.dmesg_restrict is configured"
-  when: rhel10cis_rule_1_5_5
+  when: bozkarcis_rule_1_5_5
   tags:
     - level1-server
     - level1-workstation
@@ -213,11 +212,11 @@
         dest: /etc/sysctl.d/60-kernel_sysctl.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Sysctl update required
 
 - name: "1.5.6 | PATCH | Ensure kernel.kptr_restrict is configured"
-  when: rhel10cis_rule_1_5_6
+  when: bozkarcis_rule_1_5_6
   tags:
     - level1-server
     - level1-workstation
@@ -230,7 +229,7 @@
     - name: "1.5.6 | AUDIT | Ensure kernel.kptr_restrict is configured | find existing config"
       ansible.builtin.find:
         path: /etc/sysctl.d
-        contains: kernel.kptr_restrict\s*=\s*(?!{{ rhel10cis_kptr_restrict_value }})\d*
+        contains: kernel.kptr_restrict\s*=\s*(?!{{ bozkarcis_kptr_restrict_value }})\d*
       register: discovered_kernel_kptr_restrict
 
     - name: "1.5.6 | PATCH | Ensure kernel.kptr_restrict is configured | replace incorrect entries"
@@ -255,11 +254,11 @@
         dest: /etc/sysctl.d/60-kernel_sysctl.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Sysctl update required
 
 - name: "1.5.7 | PATCH | Ensure kernel.yama.ptrace_scope is configured"
-  when: rhel10cis_rule_1_5_7
+  when: bozkarcis_rule_1_5_7
   tags:
     - level1-server
     - level1-workstation
@@ -272,7 +271,7 @@
     - name: "1.5.7 | AUDIT | Ensure kernel.yama.ptrace_scope is configured | find existing config"
       ansible.builtin.find:
         path: /etc/sysctl.d
-        contains: kernel.yama.ptrace_scope\s*=\s*(?!{{ rhel10cis_yama_ptrace_scope_value }})\d*
+        contains: kernel.yama.ptrace_scope\s*=\s*(?!{{ bozkarcis_yama_ptrace_scope_value }})\d*
       register: discovered_kernel_yama_ptrace_scope
 
     - name: "1.5.7 | PATCH | Ensure kernel.yama.ptrace_scope is configured | replace incorrect entries"
@@ -297,11 +296,11 @@
         dest: /etc/sysctl.d/60-kernel_sysctl.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Sysctl update required
 
 - name: "1.5.8 | PATCH | Ensure kernel.randomize_va_space is configured"
-  when: rhel10cis_rule_1_5_8
+  when: bozkarcis_rule_1_5_8
   tags:
     - level1-server
     - level1-workstation
@@ -339,11 +338,11 @@
         dest: /etc/sysctl.d/60-kernel_sysctl.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Sysctl update required
 
 - name: "1.5.9 | PATCH | Ensure systemd-coredump ProcessSizeMax is configured"
-  when: rhel10cis_rule_1_5_9
+  when: bozkarcis_rule_1_5_9
   tags:
     - level1-server
     - level1-workstation
@@ -358,7 +357,7 @@
         path: /etc/systemd/coredump.conf.d
         owner: root
         group: root
-        mode: 'u=rwx,go-rx'
+        mode: "u=rwx,go-rx"
         state: directory
 
     - name: "1.5.9 | AUDIT | Ensure systemd-coredump ProcessSizeMax is configured | find existing config"
@@ -389,11 +388,11 @@
         dest: /etc/systemd/coredump.conf.d/60-coredump.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Coredump Reload
 
 - name: "1.5.10 | PATCH | Ensure systemd-coredump Storage is configured"
-  when: rhel10cis_rule_1_5_10
+  when: bozkarcis_rule_1_5_10
   tags:
     - level1-server
     - level1-workstation
@@ -407,7 +406,7 @@
         path: /etc/systemd/coredump.conf.d
         owner: root
         group: root
-        mode: 'u=rwx,go-rx'
+        mode: "u=rwx,go-rx"
         state: directory
 
     - name: "1.5.10 | PATCH | Ensure systemd-coredump Storage is configured | find existing config"
@@ -438,5 +437,5 @@
         dest: /etc/systemd/coredump.conf.d/60-coredump.conf
         owner: root
         group: root
-        mode: 'u-x,go-wx'
+        mode: "u-x,go-wx"
       notify: Coredump Reload

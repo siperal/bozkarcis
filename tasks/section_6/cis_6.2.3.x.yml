@@ -1,9 +1,8 @@
 ---
-
 - name: "6.2.3.1 | PATCH | Ensure rsyslog is installed"
   when:
-    - rhel10cis_rule_6_2_3_1
-    - rhel10cis_rsyslog_ansiblemanaged
+    - bozkarcis_rule_6_2_3_1
+    - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
     - level1-workstation
@@ -17,8 +16,8 @@
 
 - name: "6.2.3.2 | PATCH | Ensure rsyslog service is enabled and active"
   when:
-    - rhel10cis_rule_6_2_3_2
-    - rhel10cis_rsyslog_ansiblemanaged
+    - bozkarcis_rule_6_2_3_2
+    - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
     - level1-workstation
@@ -35,8 +34,8 @@
 
 - name: "6.2.3.3 | PATCH | Ensure journald is configured to send logs to rsyslog"
   when:
-    - rhel10cis_rule_6_2_3_3
-    - rhel10cis_rsyslog_ansiblemanaged
+    - bozkarcis_rule_6_2_3_3
+    - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
     - level1-workstation
@@ -54,7 +53,7 @@
         state: directory
         owner: root
         group: root
-        mode: 'u=rwx,g=rx,o-rwx'
+        mode: "u=rwx,g=rx,o-rwx"
 
     - name: "6.2.3.3 | PATCH | Ensure journald is configured to send logs to rsyslog | Add template"
       ansible.builtin.template:
@@ -62,13 +61,13 @@
         dest: /etc/systemd/journald.conf.d/forwardtosyslog.conf
         owner: root
         group: root
-        mode: 'u-x,g-wx,o-rwx'
+        mode: "u-x,g-wx,o-rwx"
       notify: Restart journald
 
 - name: "6.2.3.4 | PATCH | Ensure rsyslog log file creation mode is configured"
   when:
-    - rhel10cis_rule_6_2_3_4
-    - rhel10cis_rsyslog_ansiblemanaged
+    - bozkarcis_rule_6_2_3_4
+    - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
     - level1-workstation
@@ -86,8 +85,8 @@
 
 - name: "6.2.3.5 | PATCH | Ensure rsyslog logging is configured"
   when:
-    - rhel10cis_rule_6_2_3_5
-    - rhel10cis_rsyslog_ansiblemanaged
+    - bozkarcis_rule_6_2_3_5
+    - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
     - level1-workstation
@@ -148,7 +147,7 @@
           *.=warning;*.=err                                        -/var/log/warn
           *.crit                                                   /var/log/warn
           *.*;news.none                                            /var/log/messages
-        insertbefore: '# ### sample forwarding rule ###'
+        insertbefore: "# ### sample forwarding rule ###"
       notify: Restart rsyslog
 
     - name: "6.2.3.5 | PATCH | Ensure rsyslog logging is configured | Local log settings"
@@ -190,9 +189,9 @@
 
 - name: "6.2.3.6 | PATCH | Ensure rsyslog is configured to send logs to a remote log host"
   when:
-    - rhel10cis_rule_6_2_3_6
-    - rhel10cis_remote_log_server
-    - rhel10cis_rsyslog_ansiblemanaged
+    - bozkarcis_rule_6_2_3_6
+    - bozkarcis_remote_log_server
+    - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
     - level1-workstation
@@ -205,7 +204,7 @@
     state: present
     block: |
       # target can be IP or FQDN
-      *.* action(type="omfwd" target="{{ rhel10cis_remote_log_host }}" port="{{ rhel10cis_remote_log_port }}" protocol="{{ rhel10cis_remote_log_protocol }}" action.resumeRetryCount="{{ rhel10cis_remote_log_retrycount }}" queue.type="LinkedList" queue.size="{{ rhel10cis_remote_log_queuesize }}")
+      *.* action(type="omfwd" target="{{ bozkarcis_remote_log_host }}" port="{{ bozkarcis_remote_log_port }}" protocol="{{ bozkarcis_remote_log_protocol }}" action.resumeRetryCount="{{ bozkarcis_remote_log_retrycount }}" queue.type="LinkedList" queue.size="{{ bozkarcis_remote_log_queuesize }}")
     insertafter: EOF
   failed_when:
     - discovered_rsyslog_remote_host is failed
@@ -215,9 +214,9 @@
 
 - name: "6.2.3.7 | PATCH | Ensure rsyslog is not configured to receive logs from a remote client"
   when:
-    - rhel10cis_rule_6_2_3_7
-    - rhel10cis_rsyslog_ansiblemanaged
-    - not rhel10cis_system_is_log_server
+    - bozkarcis_rule_6_2_3_7
+    - bozkarcis_rsyslog_ansiblemanaged
+    - not bozkarcis_system_is_log_server
   tags:
     - level1-server
     - level1-workstation
@@ -241,8 +240,8 @@
 
 - name: "6.2.3.8 | PATCH | Ensure rsyslog logrotate is configured"
   when:
-    - rhel10cis_rule_6_2_3_8
-    - rhel10cis_rsyslog_ansiblemanaged
+    - bozkarcis_rule_6_2_3_8
+    - bozkarcis_rsyslog_ansiblemanaged
   tags:
     - level1-server
     - level1-workstation
@@ -269,4 +268,4 @@
         dest: /etc/logrotate.d/rsyslog_log.conf
         owner: root
         group: root
-        mode: 'u-x,g-wx,o-rwx'
+        mode: "u-x,g-wx,o-rwx"

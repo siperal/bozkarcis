@@ -1,8 +1,7 @@
 ---
-
 - name: "1.1.2.2.1 | PATCH | Ensure /dev/shm is tmpfs or a separate partition"
   when:
-    - rhel10cis_rule_1_1_2_2_1
+    - bozkarcis_rule_1_1_2_2_1
     - required_mount not in prelim_mount_names
   tags:
     - level1-server
@@ -34,7 +33,7 @@
 - name: "1.1.2.2.2 | PATCH | Ensure nodev option set on /dev/shm partition"
   when:
     - prelim_mount_point_fs_and_options[mount_point] is defined
-    - rhel10cis_rule_1_1_2_2_2
+    - bozkarcis_rule_1_1_2_2_2
   tags:
     - level1-server
     - level1-workstation
@@ -57,7 +56,7 @@
 - name: "1.1.2.2.3 | PATCH | Ensure nosuid option set on /dev/shm partition"
   when:
     - prelim_mount_point_fs_and_options[mount_point] is defined
-    - rhel10cis_rule_1_1_2_2_3
+    - bozkarcis_rule_1_1_2_2_3
   tags:
     - level1-server
     - level1-workstation
@@ -77,7 +76,7 @@
 - name: "1.1.2.2.4 | PATCH | Ensure noexec option set on /dev/shm partition"
   when:
     - prelim_mount_point_fs_and_options[mount_point] is defined
-    - rhel10cis_rule_1_1_2_2_4
+    - bozkarcis_rule_1_1_2_2_4
   tags:
     - level1-server
     - level1-workstation
