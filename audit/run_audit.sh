@@ -117,7 +117,7 @@ fi
 host_machine_uuid="$(if [ -f /sys/class/dmi/id/product_uuid ]; then cat /sys/class/dmi/id/product_uuid; else dmidecode -s system-uuid; fi)"
 host_epoch="$(date +%s)"
 host_os_locale="$(date +%Z)"
-host_os_name="$(grep "^NAME=" /etc/os-release | cut -d '"' -f2 | sed 's/ //' | cut -d' ' -f1)"
+host_os_name="$(grep "^NAME=" /etc/os-release | cut -d '"' -f2 | cut -d' ' -f2)"
 host_os_version="$(grep "^VERSION_ID=" /etc/os-release | cut -d '"' -f2)"
 host_os_hostname="$(hostname)"
 
