@@ -17,9 +17,6 @@ It works using a set of configuration files and directories to audit CIS of RHEL
 Tested on
 
 - Siperal Bozkaros Server 1.0 (Ergenekon)
-- RHEL10
-- almalinux10
-- rocky10
 
 ## Requirements
 

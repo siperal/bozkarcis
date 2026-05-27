@@ -2,7 +2,7 @@
 - name: "1.2.1.1 | AUDIT | Ensure GPG keys are configured"
   when:
     - bozkarcis_rule_1_2_1_1
-    - ansible_facts.distribution == "RedHat" or ansible_facts.distribution == "Rocky" or ansible_facts.distribution == "AlmaLinux"
+    - ansible_facts.distribution == "Siperal"
   tags:
     - level1-server
     - patch
