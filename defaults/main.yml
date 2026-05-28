@@ -983,9 +983,7 @@ bozkarcis_allow_authselect_updates: true
 ## Controls 5.3.x
 
 # This variable configures the name of the custom profile to be created and selected.
-# To be changed from default - cis_example_profile. This setting needs to be adjusted
-# in order to minimise risk.
-bozkarcis_authselect_custom_profile_name: cis_example_profile
+bozkarcis_authselect_custom_profile_name: siperal_bozkaros_cis
 # Name of the existing authselect profile to copy - options can be found with
 # ```authselect list``` on the host to be configured
 bozkarcis_authselect_default_profile_to_copy: "sssd --symlink-meta"
